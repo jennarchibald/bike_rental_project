@@ -19,13 +19,19 @@ class Customer
 
   # read
 
-  def self.all
+  def self.all()
     sql = 'SELECT * FROM customers'
     customers_hashes = SqlRunner.run(sql)
     return customers_hashes.map { |hash| Customer.new(hash)}
   end
 
   # update
+
+  def update()
+    sql = 'UPDATE customers SET (name, contact_number, age) = ($1, $2, $3) WHERE id = $4'
+    values = [@name, @contact_number, @age, @id]
+    SqlRunner.run(sql, values)
+  end
 
   # delete
 
