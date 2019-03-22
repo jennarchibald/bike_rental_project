@@ -10,5 +10,17 @@ class Customer
     @age = options['age'].to_i
   end
 
+  # create
+  def save()
+    sql = 'INSERT INTO customers (name, contact_number, age) VALUES ($1, $2, $3) RETURNING id'
+    values = [@name, @contact_number, @age]
+    @id = SqlRunner.run(sql, values).first['id'].to_i
+  end
   
+  # read
+
+  # update
+
+  # delete
+
 end
