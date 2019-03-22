@@ -12,7 +12,7 @@ CREATE TABLE customers (
 CREATE TABLE stock_items (
   id SERIAL4 PRIMARY KEY,
   type VARCHAR(255),
-  rental_cost INT2
+  rental_cost NUMERIC(5,2)
 );
 
 CREATE TABLE leases (
