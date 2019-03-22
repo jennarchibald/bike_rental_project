@@ -1,6 +1,8 @@
+require('pry-byebug')
+
 require_relative('../models/customer')
 
-
+Customer.delete_all
 
 customer1 = Customer.new({
   'name' => 'Jenn',
@@ -17,3 +19,8 @@ customer2 = Customer.new({
   })
 
 customer2.save()
+
+
+
+binding.pry()
+nil

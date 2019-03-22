@@ -16,11 +16,16 @@ class Customer
     values = [@name, @contact_number, @age]
     @id = SqlRunner.run(sql, values).first['id'].to_i
   end
-  
+
   # read
 
   # update
 
   # delete
+
+  def self.delete_all()
+    sql = 'DELETE FROM customers'
+    SqlRunner.run(sql)
+  end
 
 end
