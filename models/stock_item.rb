@@ -20,7 +20,31 @@ class StockItem
 
   # read
 
+  def self.all()
+    sql = 'SELECT * FROM stock_items'
+    stock_item_hashes = SqlRunner.run(sql)
+    return stock_item_hashes.map { |hash| StockItem.new(hash)}
+  end
+
   # update
 
+  def update()
+    sql = 'UPDATE stock_items SET (type, rental_cost) = ($1, $2) WHERE id = $3'
+    values = [@type, @rental_cost, @id]
+    SqlRunner.run(sql, values)
+  end
+
+
   # delete
+
+  def delete()
+    sql = 'DELETE FROM stock_items WHERE id = $1'
+    values = [@id]
+    SqlRunner.run(sql, values)
+  end
+
+  def self.delete_all()
+    sql = 'DELETE FROM stock_items'
+    SqlRunner.run(sql)
+  end
 end

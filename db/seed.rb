@@ -3,7 +3,8 @@ require('pry-byebug')
 require_relative('../models/customer')
 require_relative('../models/stock_item')
 
-Customer.delete_all
+Customer.delete_all()
+StockItem.delete_all()
 
 
 # CUSTOMERS
