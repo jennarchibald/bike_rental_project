@@ -19,6 +19,12 @@ class Customer
 
   # read
 
+  def self.all
+    sql = 'SELECT * FROM customers'
+    customers_hashes = SqlRunner.run(sql)
+    return customers_hashes.map { |hash| Customer.new(hash)}
+  end
+
   # update
 
   # delete
