@@ -23,7 +23,7 @@ class StockItem
   def self.all()
     sql = 'SELECT * FROM stock_items'
     stock_item_hashes = SqlRunner.run(sql)
-    return stock_item_hashes.map { |hash| StockItem.new(hash)}
+    return StockItem.map_hashes(stock_item_hashes)
   end
 
   # update
@@ -64,8 +64,15 @@ class StockItem
     sql = 'SELECT * FROM stock_items WHERE type = $1'
     values = [type]
     stock_item_hashes = SqlRunner.run(sql, values)
-    return stock_item_hashes.map {|hash| StockItem.new(hash)}
+    return StockItem.map_hashes(stock_item_hashes)
   end
 
+
+
+  #  map an array of hashes into an array of stock items
+
+  def self.map_hashes(array)
+    return array.map {|hash| StockItem.new(hash)}
+  end
 
 end

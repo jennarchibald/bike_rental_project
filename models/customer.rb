@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner.rb')
+require_relative('./stock_item')
 
 class Customer
   attr_accessor :name, :contact_number, :age
@@ -44,6 +45,18 @@ class Customer
   def self.delete_all()
     sql = 'DELETE FROM customers'
     SqlRunner.run(sql)
+  end
+
+  # find all the items a customer has leased
+
+  def items()
+    sql = 'SELECT stock_items.* FROM stock_items
+            INNER JOIN leases
+            ON stock_items.id = leases.stock_item_id
+            WHERE leases.customer_id = $1'
+    values = [@id]
+    stock_item_hashes = SqlRunner.run(sql, values)
+    return StockItem.map_hashes(stock_item_hashes)
   end
 
 end
