@@ -75,4 +75,5 @@ class StockItem
     return array.map {|hash| StockItem.new(hash)}
   end
 
+
 end

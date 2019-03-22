@@ -49,7 +49,7 @@ class Customer
 
   # find all the items a customer has leased
 
-  def items()
+  def items_leased()
     sql = 'SELECT stock_items.* FROM stock_items
             INNER JOIN leases
             ON stock_items.id = leases.stock_item_id
