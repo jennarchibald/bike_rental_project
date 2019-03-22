@@ -47,4 +47,16 @@ class StockItem
     sql = 'DELETE FROM stock_items'
     SqlRunner.run(sql)
   end
+
+
+  # find a stock item by its id
+
+  def self.find_by_id(id)
+    sql = 'SELECT * FROM stock_items WHERE id = $1'
+    values = [id]
+    stock_item_hash = SqlRunner.run(sql, values).first
+    return StockItem.new(stock_item_hash)
+  end
+
+  
 end
