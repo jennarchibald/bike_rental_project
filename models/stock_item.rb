@@ -67,4 +67,5 @@ class StockItem
     return stock_item_hashes.map {|hash| StockItem.new(hash)}
   end
 
+
 end

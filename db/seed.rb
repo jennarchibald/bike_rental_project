@@ -2,6 +2,7 @@ require('pry-byebug')
 
 require_relative('../models/customer')
 require_relative('../models/stock_item')
+require_relative('../models/lease')
 
 Customer.delete_all()
 StockItem.delete_all()
@@ -71,6 +72,35 @@ item6 = StockItem.new({
 
 item6.save()
 
+
+# LEASES
+
+lease1 = Lease.new({
+  'start_date' => '2019-03-22',
+  'end_date' => '2019-03-29',
+  'customer_id' => customer1.id,
+  'stock_item_id' => item1.id
+  })
+
+lease1.save()
+
+lease2 = Lease.new({
+  'start_date' => '2019-03-14',
+  'end_date' => '2019-03-21',
+  'customer_id' => customer2.id,
+  'stock_item_id' => item2.id
+  })
+
+lease2.save()
+
+lease3 = Lease.new({
+  'start_date' => '2019-03-22',
+  'end_date' => '2019-03-29',
+  'customer_id' => customer1.id,
+  'stock_item_id' => item4.id
+  })
+
+lease3.save()
 
 
 binding.pry()

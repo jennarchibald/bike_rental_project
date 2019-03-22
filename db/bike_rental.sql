@@ -20,5 +20,5 @@ CREATE TABLE leases (
   start_date DATE,
   end_date DATE,
   customer_id INT4 REFERENCES customers(id) ON DELETE CASCADE,
-  stock_items_id INT4 REFERENCES stock_items(id) ON DELETE CASCADE
+  stock_item_id INT4 REFERENCES stock_items(id) ON DELETE CASCADE
 );
