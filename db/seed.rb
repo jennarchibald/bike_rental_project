@@ -50,6 +50,27 @@ item3 = StockItem.new({
 
 item3.save()
 
+item4 = StockItem.new({
+  'type' => 'helmet',
+  'rental_cost' => '0.50'
+  })
+
+item4.save()
+
+item5 = StockItem.new({
+  'type' => 'helmet',
+  'rental_cost' => '0.50'
+  })
+
+item5.save()
+
+item6 = StockItem.new({
+  'type' => 'lock',
+  'rental_cost' => '4.50'
+  })
+
+item6.save()
+
 
 
 binding.pry()

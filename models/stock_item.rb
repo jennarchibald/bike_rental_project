@@ -58,5 +58,13 @@ class StockItem
     return StockItem.new(stock_item_hash)
   end
 
-  
+  # find all stock items of a particular type
+
+  def self.find_by_type(type)
+    sql = 'SELECT * FROM stock_items WHERE type = $1'
+    values = [type]
+    stock_item_hashes = SqlRunner.run(sql, values)
+    return stock_item_hashes.map {|hash| StockItem.new(hash)}
+  end
+
 end
