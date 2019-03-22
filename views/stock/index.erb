@@ -1,5 +1,13 @@
 <table>
   <tr>
-    <th></th>
+    <th>Type</th>
+    <th>Rental Cost</th>
   </tr>
+  <% for item in @stock_items %>
+    <tr>
+      <td><%= item.type %></td>
+      <td><%= item.rental_cost %></td>
+    </tr>
+
+  <% end %>
 </table>

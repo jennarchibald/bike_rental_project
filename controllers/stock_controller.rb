@@ -6,5 +6,6 @@ also_reload('../models/*')
 
 
 get '/stock' do
-  erb(:index)
+  @stock_items = StockItem.all()
+  erb(:"stock/index")
 end
