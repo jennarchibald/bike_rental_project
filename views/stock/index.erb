@@ -1,13 +1,18 @@
 <table>
   <tr>
+    <th>ID</th>
     <th>Type</th>
     <th>Rental Cost</th>
   </tr>
   <% for item in @stock_items %>
-    <tr>
-      <td><%= item.type %></td>
-      <td><%= item.rental_cost %></td>
-    </tr>
+  <tr>
+    <td><%= item.id%></td>
+    <td><%= item.type %></td>
+    <td><%= item.rental_cost %></td>
+    <td><form action="/stock/<%=item.id%>" method="get">
+      <input type="submit" name="stock-details" value="More Details">
+    </form></td>
+  </tr>
 
   <% end %>
 </table>

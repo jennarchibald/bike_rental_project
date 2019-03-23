@@ -5,12 +5,12 @@
     <th>Name</th>
   </tr>
   <% for customer in @customers %>
-    <tr>
-      <td><%= customer.name %></td>
-      <td><form action="/customers/<%=customer.id%>" method="get">
-        <input type="submit" name="show" value="More Details">
-      </form></td>
-    </tr>
+  <tr>
+    <td><%= customer.name %></td>
+    <td><form action="/customers/<%=customer.id%>" method="get">
+      <input type="submit" name="show" value="More Details">
+    </form></td>
+  </tr>
 
   <% end %>
 </table>
