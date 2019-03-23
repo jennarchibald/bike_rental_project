@@ -106,7 +106,7 @@ class Lease
 
   # mark a lease as returned
 
-  def returned()
+  def mark_as_returned()
     @returned = true
     self.update()
   end

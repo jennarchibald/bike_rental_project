@@ -110,7 +110,7 @@ lease4 = Lease.new({
 
 lease4.save()
 
-lease1.returned()
+lease1.mark_as_returned()
 
 
 binding.pry()
