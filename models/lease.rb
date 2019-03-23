@@ -12,7 +12,13 @@ class Lease
     @end_date = @start_date + @duration
     @customer_id = options['customer_id'].to_i
     @stock_item_id = options['stock_item_id'].to_i
-    @returned = false
+    if options['returned'] == "f"
+      @returned = false
+    elsif options['returned'] == "t"
+      @returned = true
+    else
+      @returned = false
+    end
   end
 
   # create
@@ -89,6 +95,7 @@ class Lease
   # return true if a lease is overdue (the end_date has passed)
 
   def overdue?()
+    return false if @returned
     check_date = @end_date <=> Date::today
     return check_date < 0
   end

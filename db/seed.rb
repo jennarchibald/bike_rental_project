@@ -76,7 +76,7 @@ item6.save()
 # LEASES
 
 lease1 = Lease.new({
-  'duration' => '7',
+  'duration' => '-7',
   'customer_id' => customer1.id,
   'stock_item_id' => item1.id
   })

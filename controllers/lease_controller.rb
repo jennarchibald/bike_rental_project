@@ -1,3 +1,4 @@
+require('pry')
 require('sinatra')
 require('sinatra/contrib/all')
 
@@ -11,5 +12,6 @@ end
 
 get '/leases/:id' do
   @lease = Lease.find_by_id(params[:id])
+  # binding.pry()
   erb(:'lease/show')
 end
