@@ -25,6 +25,11 @@ get '/stock/:id/edit' do
   erb(:'stock/edit')
 end
 
+get '/stock/:id/delete' do
+  @stock_item = StockItem.find_by_id(params[:id])
+  erb(:'stock/delete')
+end
+
 
 post '/stock' do
   item = StockItem.new(params)
@@ -35,5 +40,11 @@ end
 post '/stock/:id' do
   item = StockItem.new(params)
   item.update()
+  redirect '/stock'
+end
+
+post '/stock/:id/delete' do
+  item = StockItem.find_by_id(params[:id])
+  item.delete()
   redirect '/stock'
 end

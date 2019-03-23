@@ -43,7 +43,7 @@ post '/customers/:id' do
 end
 
 post '/customers/:id/delete' do
-  customer = Customer.new(params)
+  customer = Customer.find_by_id(params[:id])
   customer.delete
   redirect '/customers'
 end
