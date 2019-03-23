@@ -1,5 +1,6 @@
 require_relative('../db/sql_runner')
 require_relative('./customer')
+require_relative('./stock_item')
 
 class Lease
   attr_accessor :start_date, :end_date, :customer_id, :stock_item_id
@@ -60,5 +61,10 @@ class Lease
 
   # return the item which was leased
 
-
+  def stock_item()
+    sql = 'SELECT * FROM stock_items WHERE id = $1'
+    values = [@stock_item_id]
+    stock_item_hash = SqlRunner.run(sql, values).first
+    return StockItem.new(stock_item_hash)
+  end
 end
