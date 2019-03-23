@@ -11,4 +11,12 @@
     <th>Age</th>
     <td><%= @customer.age%></td>
   </tr>
+  <tr>
+    <td><form action="/customers/<%=@customer.id%>/edit" method="get">
+      <input type="submit" name="edit" value="Edit Details">
+    </form></td>
+    <td><form action="/customers/<%=@customer.id%>/delete" method="get">
+      <input type="submit" name="delete-buttom" value="Delete This Customer">
+    </form></td>
+  </tr>
 </table>

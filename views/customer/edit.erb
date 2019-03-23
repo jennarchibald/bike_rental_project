@@ -1,0 +1,9 @@
+<form action="/customers/<%=@customer.id%>" method="post">
+  <label for="name">Customer Name</label>
+  <input type="text" name="name" id="name" value = "<%= @customer.name%>">
+  <label for="contact-number">Contact Number</label>
+  <input type="tel" name="contact_number" id="contact-number" value="<%= @customer.contact_number%>">
+  <label for="age">Age</label>
+  <input type="number" name="age" id="age" value="<%=@customer.age%>">
+  <input type="submit" name="edit-customer" value="Save Changes">
+</form>
