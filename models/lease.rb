@@ -3,7 +3,7 @@ require_relative('./customer')
 require_relative('./stock_item')
 
 class Lease
-  attr_accessor :start_date, :duration, :end_date, :customer_id, :stock_item_id
+  attr_accessor :start_date, :duration, :end_date, :customer_id, :stock_item_id, :returned
   attr_reader :id
   def initialize(options)
     @id = options['id'].to_i if options['id']
