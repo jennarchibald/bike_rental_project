@@ -20,3 +20,33 @@
     </form></td>
   </tr>
 </table>
+
+<h3>Current Leases</h3>
+
+<table>
+  <% for lease in @stock_item.current_leases %>
+  <tr>
+    <td><%= lease.stock_item.type %></td>
+    <td><%= lease.start_date %></td>
+    <td><%= lease.end_date %></td>
+    <td><form action="/leases/<%=lease.id%>" method="get">
+      <input type="submit" name="more-lease-details" value="More Details">
+    </form></td>
+  </tr>
+  <% end %>
+</table>
+
+<h3>Past Leases</h3>
+
+<table>
+  <% for lease in @stock_item.past_leases %>
+  <tr>
+    <td><%= lease.stock_item.type %></td>
+    <td><%= lease.start_date %></td>
+    <td><%= lease.end_date %></td>
+    <td><form action="/leases/<%=lease.id%>" method="get">
+      <input type="submit" name="more-lease-details" value="More Details">
+    </form></td>
+  </tr>
+  <% end %>
+</table>

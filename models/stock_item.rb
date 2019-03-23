@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner')
+require_relative('./lease')
 
 class StockItem
   attr_accessor :type, :rental_cost
@@ -67,7 +68,26 @@ class StockItem
     return StockItem.map_hashes(stock_item_hashes)
   end
 
+  # find all current leases for this item
 
+  def current_leases()
+    sql = 'SELECT * FROM leases
+            WHERE stock_item_id = $1
+            AND returned = FALSE'
+    values = [@id]
+    stock_item_hashes = SqlRunner.run(sql, values)
+    return Lease.map_hashes(stock_item_hashes)
+  end
+  # find all past leases for this item
+
+  def past_leases()
+    sql = 'SELECT * FROM leases
+            WHERE stock_item_id = $1
+            AND returned = TRUE'
+    values = [@id]
+    stock_item_hashes = SqlRunner.run(sql, values)
+    return Lease.map_hashes(stock_item_hashes)
+  end
 
   #  map an array of hashes into an array of stock items
 
