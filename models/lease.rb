@@ -7,8 +7,9 @@ class Lease
   attr_reader :id
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @start_date = options['start_date']
-    @end_date = options['end_date']
+    @start_date = Date::today
+    @duration = options['duration'].to_i
+    @end_date = @start_date + @duration
     @customer_id = options['customer_id'].to_i
     @stock_item_id = options['stock_item_id'].to_i
   end
@@ -16,8 +17,8 @@ class Lease
   # create
 
   def save()
-    sql = 'INSERT INTO leases (start_date, end_date, customer_id, stock_item_id) VALUES ($1, $2, $3, $4) RETURNING id'
-    values = [@start_date, @end_date, @customer_id, @stock_item_id]
+    sql = 'INSERT INTO leases (start_date, duration, end_date, customer_id, stock_item_id) VALUES ($1, $2, $3, $4, $5) RETURNING id'
+    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id]
     @id = SqlRunner.run(sql, values).first['id'].to_i
   end
 
@@ -32,8 +33,8 @@ class Lease
   # update
 
   def update()
-    sql = 'UPDATE leases SET (start_date, end_date, customer_id, stock_item_id) = ($1, $2, $3, $4) WHERE id = $5'
-    values = [@start_date, @end_date, @customer_id, @stock_item_id, @id]
+    sql = 'UPDATE leases SET (start_date, duration, end_date, customer_id, stock_item_id) = ($1, $2, $3, $4, $5) WHERE id = $6'
+    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -59,6 +60,13 @@ class Lease
     return Lease.new(lease_hash)
   end
 
+  # return the total cost of a lease
+
+  def total_cost()
+    daily_cost = stock_item().rental_cost
+    return @duration * daily_cost
+  end
+
   # return the customer who leased the item
 
   def customer()
@@ -75,5 +83,11 @@ class Lease
     values = [@stock_item_id]
     stock_item_hash = SqlRunner.run(sql, values).first
     return StockItem.new(stock_item_hash)
+  end
+
+  # return true if a lease is overdue (the end_date has passed)
+
+  def overdue?()
+
   end
 end

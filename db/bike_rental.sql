@@ -19,6 +19,7 @@ CREATE TABLE leases (
   id SERIAL4 PRIMARY KEY,
   start_date DATE,
   end_date DATE,
+  duration INT2,
   customer_id INT4 REFERENCES customers(id) ON DELETE CASCADE,
   stock_item_id INT4 REFERENCES stock_items(id) ON DELETE CASCADE
 );
