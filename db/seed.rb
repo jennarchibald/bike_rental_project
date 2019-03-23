@@ -99,6 +99,14 @@ lease3 = Lease.new({
 
 lease3.save()
 
+lease4 = Lease.new({
+  'duration' => '-7',
+  'customer_id' => customer2.id,
+  'stock_item_id' => item5.id
+  })
+
+lease4.save()
+
 
 binding.pry()
 nil

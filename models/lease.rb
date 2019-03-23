@@ -88,6 +88,7 @@ class Lease
   # return true if a lease is overdue (the end_date has passed)
 
   def overdue?()
-
+    check_date = @end_date <=> Date::today
+    return check_date < 0
   end
 end
