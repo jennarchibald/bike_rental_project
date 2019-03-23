@@ -1,12 +1,16 @@
 <table>
   <tr>
-    <th>Type</th>
-    <th>Rental Cost</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Customer</th>
+    <th>Item Leased</th>
   </tr>
   <% for lease in @leases %>
     <tr>
-      <td><%= item.type %></td>
-      <td><%= item.rental_cost %></td>
+      <td><%= lease.start_date %></td>
+      <td><%= lease.end_date %></td>
+      <td><%= lease.customer.name %></td>
+      <td><%= lease.stock_item.type %></td>
     </tr>
 
   <% end %>
