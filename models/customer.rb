@@ -2,19 +2,20 @@ require_relative('../db/sql_runner.rb')
 require_relative('./stock_item')
 
 class Customer
-  attr_accessor :name, :contact_number, :age
+  attr_accessor :first_name, :last_name, :contact_number, :age
   attr_reader :id
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @name = options['name']
+    @first_name = options['first_name']
+    @last_name = options['last_name']
     @contact_number = options['contact_number']
     @age = options['age'].to_i
   end
 
   # create
   def save()
-    sql = 'INSERT INTO customers (name, contact_number, age) VALUES ($1, $2, $3) RETURNING id'
-    values = [@name, @contact_number, @age]
+    sql = 'INSERT INTO customers (first_name, last_name, contact_number, age) VALUES ($1, $2, $3, $4) RETURNING id'
+    values = [@first_name, @last_name, @contact_number, @age]
     @id = SqlRunner.run(sql, values).first['id'].to_i
   end
 
@@ -29,8 +30,8 @@ class Customer
   # update
 
   def update()
-    sql = 'UPDATE customers SET (name, contact_number, age) = ($1, $2, $3) WHERE id = $4'
-    values = [@name, @contact_number, @age, @id]
+    sql = 'UPDATE customers SET (first_name, last_name, contact_number, age) = ($1, $2, $3, $4) WHERE id = $5'
+    values = [@first_name, @last_name, @contact_number, @age, @id]
     SqlRunner.run(sql, values)
   end
 

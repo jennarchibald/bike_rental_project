@@ -10,7 +10,8 @@ StockItem.delete_all()
 
 # CUSTOMERS
 customer1 = Customer.new({
-  'name' => 'Jenn',
+  'first_name' => 'Jenn',
+  'last_name' => 'Archibald',
   'contact_number' => '08999112334',
   'age' => '27'
   })
@@ -18,7 +19,8 @@ customer1 = Customer.new({
 customer1.save()
 
 customer2 = Customer.new({
-  'name' => 'Alex',
+  'first_name' => 'Alex',
+  'last_name' => 'Archibald',
   'contact_number' => '08999223445',
   'age' => '56'
   })

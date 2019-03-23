@@ -4,7 +4,8 @@ DROP TABLE IF EXISTS stock_items;
 
 CREATE TABLE customers (
   id SERIAL4 PRIMARY KEY,
-  name VARCHAR(255),
+  first_name VARCHAR(255),
+  last_name VARCHAR(255),
   contact_number VARCHAR(255),
   age INT2
 );
