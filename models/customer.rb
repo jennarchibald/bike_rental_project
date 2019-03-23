@@ -57,13 +57,28 @@ class Customer
     return Customer.new(customer_hash)
   end
 
-  # find all the items a customer has leased
 
-  def items_leased()
+
+  # find all the items a customer has leased which are not returned
+  def current_items_leased()
     sql = 'SELECT stock_items.* FROM stock_items
             INNER JOIN leases
             ON stock_items.id = leases.stock_item_id
-            WHERE leases.customer_id = $1'
+            WHERE leases.customer_id = $1
+            AND leases.returned = FALSE'
+    values = [@id]
+    stock_item_hashes = SqlRunner.run(sql, values)
+    return StockItem.map_hashes(stock_item_hashes)
+  end
+
+  # find all the items a customer has leased which are returned
+
+  def previous_items_leased()
+    sql = 'SELECT stock_items.* FROM stock_items
+            INNER JOIN leases
+            ON stock_items.id = leases.stock_item_id
+            WHERE leases.customer_id = $1
+            AND leases.returned = TRUE'
     values = [@id]
     stock_item_hashes = SqlRunner.run(sql, values)
     return StockItem.map_hashes(stock_item_hashes)
