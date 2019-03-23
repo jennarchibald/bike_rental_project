@@ -110,4 +110,10 @@ class Lease
     @returned = true
     self.update()
   end
+
+  # map an array of hashes to leases
+
+  def self.map_hashes(array)
+    return array.map {|hash| Lease.new(hash)}
+  end
 end

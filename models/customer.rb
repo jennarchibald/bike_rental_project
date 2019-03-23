@@ -1,5 +1,6 @@
 require_relative('../db/sql_runner.rb')
 require_relative('./stock_item')
+require_relative('./lease')
 
 class Customer
   attr_accessor :first_name, :last_name, :contact_number, :age
@@ -84,4 +85,23 @@ class Customer
     return StockItem.map_hashes(stock_item_hashes)
   end
 
+  # find all the current leases (not returned)
+  def current_leases()
+    sql = 'SELECT * FROM leases
+            WHERE customer_id = $1
+            AND returned = FALSE'
+    values = [@id]
+    stock_item_hashes = SqlRunner.run(sql, values)
+    return Lease.map_hashes(stock_item_hashes)
+  end
+
+  # find all the past leases (returned)
+  def past_leases()
+    sql = 'SELECT * FROM leases
+            WHERE customer_id = $1
+            AND returned = TRUE'
+    values = [@id]
+    stock_item_hashes = SqlRunner.run(sql, values)
+    return Lease.map_hashes(stock_item_hashes)
+  end
 end
