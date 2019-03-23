@@ -3,7 +3,7 @@
 <table>
   <tr>
     <th>Customer Name</th>
-    <td><%= @lease.customer.name%></td>
+    <td><%= @lease.customer.first_name%> <%= @lease.customer.last_name%></td>
     <td>
       <form action="/customers/<%=@lease.customer_id%>" method="get">
         <input type="submit" name="more-customer-details" value="More Details">

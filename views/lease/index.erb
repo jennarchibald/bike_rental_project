@@ -7,7 +7,7 @@
   </tr>
   <% for lease in @leases %>
     <tr>
-      <td><%= lease.customer.name %></td>
+      <td><%= lease.customer.first_name %> <%= lease.customer.last_name%></td>
       <td><%= lease.stock_item.type %></td>
       <td><%= lease.start_date %></td>
       <td><%= lease.end_date %></td>
