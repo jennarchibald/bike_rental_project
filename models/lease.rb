@@ -12,13 +12,14 @@ class Lease
     @end_date = @start_date + @duration
     @customer_id = options['customer_id'].to_i
     @stock_item_id = options['stock_item_id'].to_i
+    @returned = false
   end
 
   # create
 
   def save()
-    sql = 'INSERT INTO leases (start_date, duration, end_date, customer_id, stock_item_id) VALUES ($1, $2, $3, $4, $5) RETURNING id'
-    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id]
+    sql = 'INSERT INTO leases (start_date, duration, end_date, customer_id, stock_item_id, returned) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id'
+    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @returned]
     @id = SqlRunner.run(sql, values).first['id'].to_i
   end
 
@@ -33,8 +34,8 @@ class Lease
   # update
 
   def update()
-    sql = 'UPDATE leases SET (start_date, duration, end_date, customer_id, stock_item_id) = ($1, $2, $3, $4, $5) WHERE id = $6'
-    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @id]
+    sql = 'UPDATE leases SET (start_date, duration, end_date, customer_id, stock_item_id, returned) = ($1, $2, $3, $4, $5, $6) WHERE id = $7'
+    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @returned, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -90,5 +91,12 @@ class Lease
   def overdue?()
     check_date = @end_date <=> Date::today
     return check_date < 0
+  end
+
+  # mark a lease as returned
+
+  def returned()
+    @returned = true
+    self.update()
   end
 end

@@ -107,6 +107,8 @@ lease4 = Lease.new({
 
 lease4.save()
 
+lease1.returned()
+
 
 binding.pry()
 nil
