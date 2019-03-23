@@ -1,4 +1,5 @@
 require_relative('../db/sql_runner')
+require_relative('./customer')
 
 class Lease
   attr_accessor :start_date, :end_date, :customer_id, :stock_item_id
@@ -47,6 +48,17 @@ class Lease
     sql = "DELETE FROM leases"
     SqlRunner.run(sql)
   end
+
+  # return the customer who leased the item
+
+  def customer()
+    sql = 'SELECT * FROM customers WHERE id = $1'
+    values = [@customer_id]
+    customer_hash = SqlRunner.run(sql, values).first
+    return Customer.new(customer_hash)
+  end
+
+  # return the item which was leased
 
 
 end
