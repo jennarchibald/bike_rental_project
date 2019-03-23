@@ -50,6 +50,15 @@ class Lease
     SqlRunner.run(sql)
   end
 
+  # find a lease by id
+
+  def self.find_by_id(id)
+    sql = "SELECT * FROM leases WHERE id = $1"
+    values = [id]
+    lease_hash = SqlRunner.run(sql, values).first
+    return Lease.new(lease_hash)
+  end
+
   # return the customer who leased the item
 
   def customer()

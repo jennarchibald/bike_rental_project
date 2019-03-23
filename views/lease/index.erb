@@ -1,16 +1,19 @@
 <table>
   <tr>
-    <th>Start Date</th>
-    <th>End Date</th>
     <th>Customer</th>
     <th>Item Leased</th>
+    <th>Start Date</th>
+    <th>End Date</th>
   </tr>
   <% for lease in @leases %>
     <tr>
-      <td><%= lease.start_date %></td>
-      <td><%= lease.end_date %></td>
       <td><%= lease.customer.name %></td>
       <td><%= lease.stock_item.type %></td>
+      <td><%= lease.start_date %></td>
+      <td><%= lease.end_date %></td>
+      <td><form action="/leases/<%=lease.id%>" method="get">
+        <input type="submit" name="more-lease-details" value="More Details">
+      </form></td>
     </tr>
 
   <% end %>

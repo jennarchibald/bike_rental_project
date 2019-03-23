@@ -8,3 +8,8 @@ get '/leases' do
   @leases = Lease.all()
   erb(:"lease/index")
 end
+
+get '/leases/:id' do
+  @lease = Lease.find_by_id(params[:id])
+  erb(:'lease/show')
+end
