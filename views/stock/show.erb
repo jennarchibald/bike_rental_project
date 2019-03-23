@@ -11,4 +11,12 @@
     <th>Rental Cost</th>
     <td><%= @stock_item.rental_cost%></td>
   </tr>
+  <tr>
+    <td><form action="/stock/<%=@stock_item.id%>/edit" method="get">
+      <input type="submit" name="edit-item" value="Edit Details">
+    </form></td>
+    <td><form action="/stock/<%=@stock_item.id%>/delete" method="get">
+      <input type="submit" name="delete-item" value="Delete This Item">
+    </form></td>
+  </tr>
 </table>

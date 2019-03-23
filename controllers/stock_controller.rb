@@ -20,9 +20,20 @@ get '/stock/:id' do
   erb(:'stock/show')
 end
 
+get '/stock/:id/edit' do
+  @stock_item = StockItem.find_by_id(params[:id])
+  erb(:'stock/edit')
+end
+
 
 post '/stock' do
   item = StockItem.new(params)
   item.save()
+  redirect '/stock'
+end
+
+post '/stock/:id' do
+  item = StockItem.new(params)
+  item.update()
   redirect '/stock'
 end
