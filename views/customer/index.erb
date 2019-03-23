@@ -11,6 +11,9 @@
       <td><%= customer.name %></td>
       <td><%= customer.contact_number %></td>
       <td><%= customer.age %></td>
+      <td><form action="/customers/<%=customer.id%>" method="get">
+        <input type="submit" name="show" value="More Details">
+      </form></td>
     </tr>
 
   <% end %>
