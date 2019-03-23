@@ -1,0 +1,20 @@
+<h3>Are you sure you wish to delete this customer?</h3>
+<p>This action cannot be reversed!</p>
+<table>
+  <tr>
+    <th>Name</th>
+    <td><%= @customer.name %></td>
+  </tr>
+  <tr>
+    <th>Contact</th>
+    <td><%= @customer.contact_number %></td>
+  </tr>
+  <tr>
+    <th>Age</th>
+    <td><%= @customer.age%></td>
+  </tr>
+</table>
+
+<form action="/customers/<%=@customer.id%>/delete" method="post">
+  <input type="submit" name="delete" value="Delete Customer">
+</form>

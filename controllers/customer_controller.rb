@@ -25,7 +25,7 @@ end
 
 get '/customers/:id/delete' do
   @customer = Customer.find_by_id(params[:id])
-  erb(:delete)
+  erb(:'customer/delete')
 end
 
 
@@ -39,5 +39,11 @@ end
 post '/customers/:id' do
   customer = Customer.new(params)
   customer.update()
+  redirect '/customers'
+end
+
+post '/customers/:id/delete' do
+  customer = Customer.new(params)
+  customer.delete
   redirect '/customers'
 end
