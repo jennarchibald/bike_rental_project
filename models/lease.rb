@@ -7,7 +7,11 @@ class Lease
   attr_reader :id
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @start_date = Date::today
+    if options['start_date']
+      @start_date = Date.parse(options['start_date'])
+    else
+      @start_date = Date::today
+    end
     @duration = options['duration'].to_i
     @end_date = @start_date + @duration
     @customer_id = options['customer_id'].to_i
