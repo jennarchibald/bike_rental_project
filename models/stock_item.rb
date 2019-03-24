@@ -27,9 +27,10 @@ class StockItem
   end
 
   # read
-
+  # ordered by availibility (available first)
   def self.all()
-    sql = 'SELECT * FROM stock_items'
+    sql = 'SELECT * FROM stock_items
+            ORDER BY available DESC'
     stock_item_hashes = SqlRunner.run(sql)
     return StockItem.map_hashes(stock_item_hashes)
   end
@@ -121,6 +122,8 @@ class StockItem
     items_hashes = SqlRunner.run(sql)
     return StockItem.map_hashes(items_hashes)
   end
+
+  
 
   # check if an item is available for rent (not on a lease)
   def available?()
