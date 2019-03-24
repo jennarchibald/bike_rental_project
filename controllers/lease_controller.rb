@@ -22,9 +22,22 @@ get '/leases/:id' do
   erb(:'lease/show')
 end
 
+get '/leases/:id/edit' do
+  @customers = Customer.all()
+  @stock_items = StockItem.all()
+  @lease = Lease.find_by_id(params[:id])
+  erb(:'lease/edit')
+end
+
 
 post '/leases' do
   lease = Lease.new(params)
   lease.save()
+  redirect '/leases'
+end
+
+post '/leases/:id' do
+  lease = Lease.new(params)
+  lease.update()
   redirect '/leases'
 end

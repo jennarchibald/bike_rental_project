@@ -42,5 +42,11 @@
           <% end %>
         </td>
       </tr>
+      <tr>
+        <td colspan="2">
+          <form action="/leases/<%=@lease.id%>/edit" method="get">
+            <input type="submit" name="edit-lease" value="Edit Lease Details">
+        </form></td>
+      </tr>
 
     </table>

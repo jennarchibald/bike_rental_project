@@ -1,0 +1,22 @@
+<form action="/leases/<%= @lease.id %>" method="post">
+  <label for="customer">Customer Name</label>
+  <select name="customer_id" id="customer">
+    <% for customer in @customers %>
+    <option value="<%= customer.id%>"
+      <%= 'selected' if @lease.customer_id == customer.id%>>
+      <%= customer.first_name%> <%= customer.last_name%>
+    </option>
+    <%end%>
+  </select>
+  <label for="stock-item">Item</label>
+  <select name="stock_item_id" id = "stock-item">
+    <% for item in @stock_items %>
+    <option value="<%= item.id%>"
+      <%= 'selected' if @lease.stock_item_id == item.id%>>
+      <%= item.type%> (<%=item.id%>)</option>
+      <%end%>
+    </select>
+    <label for="duration">Duration (days)</label>
+    <input type="number" name="duration" value="<%= @lease.duration%>">
+    <input type="submit" name="edit_lease" value="Save Changes">
+  </form>
