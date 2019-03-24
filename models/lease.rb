@@ -44,7 +44,7 @@ class Lease
   # return all leases sorted by end date (oldest first)
 
   def self.all_ordered_by_end_date()
-    sql = 'SELECT * FROM leases ORDER BY end_date DESC'
+    sql = 'SELECT * FROM leases ORDER BY end_date ASC'
     leases_hashes = SqlRunner.run(sql)
     return leases_hashes.map {|hash| Lease.new(hash)}
   end
