@@ -1,0 +1,17 @@
+<form action="/leases" method="post">
+  <label for="customer">Customer Name</label>
+  <select name="customer_id" id="customer">
+    <% for customer in @customers %>
+    <option value="<%= customer.id%>"><%= customer.first_name%> <%= customer.last_name%></option>
+    <%end%>
+  </select>
+  <label for="stock-item">Item</label>
+  <select name="stock_item_id" id = "stock-item">
+    <% for item in @stock_items %>
+    <option value="<%= item.id%>"><%= item.type%> (<%=item.id%>)</option>
+    <%end%>
+  </select>
+  <label for="duration">Duration (days)</label>
+  <input type="number" name="duration" value="7">
+  <input type="submit" name="new_lease" value="Create New Lease">
+</form>

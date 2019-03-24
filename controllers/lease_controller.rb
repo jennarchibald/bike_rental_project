@@ -10,8 +10,21 @@ get '/leases' do
   erb(:"lease/index")
 end
 
+get '/leases/new' do
+  @customers = Customer.all()
+  @stock_items = StockItem.all()
+  erb(:'lease/new')
+end
+
 get '/leases/:id' do
   @lease = Lease.find_by_id(params[:id])
   # binding.pry()
   erb(:'lease/show')
+end
+
+
+post '/leases' do
+  lease = Lease.new(params)
+  lease.save()
+  redirect '/leases'
 end
