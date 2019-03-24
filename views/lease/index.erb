@@ -20,6 +20,7 @@
     <td><form action="/leases/<%=lease.id%>" method="get">
       <input type="submit" name="more-lease-details" value="More Details">
     </form></td>
+    <td><%= 'Overdue' if lease.overdue?%></td>
   </tr>
 
   <% end %>
