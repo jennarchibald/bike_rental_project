@@ -114,18 +114,14 @@ class StockItem
 
 
 
-  ##return all available items
-  # def self.available_items()
-  #   sql = "SELECT stock_items.* FROM
-  #   stock_items
-  #   LEFT JOIN leases
-  #   ON stock_items.id = leases.stock_item_id
-  #   WHERE leases.stock_item_id IS NULL
-  #   OR leases.returned = TRUE"
-  #   items_hashes = SqlRunner.run(sql)
-  #   return StockItem.map_hashes(items_hashes)
-  # end
-  #
+  #return all available items
+  def self.available_items()
+    sql = "SELECT * FROM stock_items
+            WHERE available = TRUE"
+    items_hashes = SqlRunner.run(sql)
+    return StockItem.map_hashes(items_hashes)
+  end
+
   # # check if an item is available for rent (not on a lease)
   # def available?()
   #   available_items = StockItem.available_items()
