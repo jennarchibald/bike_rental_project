@@ -38,6 +38,7 @@ post '/stock' do
 end
 
 post '/stock/filter' do
+  redirect '/stock' if params['type'] == 'all'
   @stock_items = StockItem.find_by_type(params['type'])
   erb(:'stock/index')
 end
