@@ -58,6 +58,17 @@ class Customer
     return Customer.new(customer_hash)
   end
 
+  # search for a customer by name
+
+  def self.search_by_name(name)
+    sql = "SELECT * FROM customers
+            WHERE LOWER(first_name) = $1
+            OR LOWER(last_name) = $1"
+    values = [name.downcase]
+    customers_hashes = SqlRunner.run(sql, values)
+      return customers_hashes.map {|hash| Customer.new(hash)}
+  end
+
 
 
   # find all the items a customer has leased which are not returned

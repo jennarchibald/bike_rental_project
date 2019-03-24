@@ -1,5 +1,10 @@
 <h4><a href="/customers/new">Add a new customer</a></h4>
 
+
+<form action="/customers/search" method="post">
+  <input type="text" name="name" id='name'>
+  <input type="submit" name="search" value="Search for customer">
+</form>
 <table>
   <% for customer in @customers %>
   <tr>
