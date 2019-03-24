@@ -34,13 +34,14 @@
         <td><%= @lease.total_cost%></td>
       </tr>
 
+      <% if @lease.returned == true %>
       <tr>
-        <% if @lease.returned == true %>
         <td colspan="2">
           <%= 'Item Returned' %>
         </td>
       </tr>
       <% else %>
+      <tr>
       <td>
         <%= 'Item on Loan' %>
       </td>
@@ -54,8 +55,8 @@
           <input type="hidden" name="returned" value="t">
           <input type="submit" name="mark-as-returned" value="Mark as Returned">
         </form>
-        </td>
-      </tr>
+      </td>
+    </tr>
     <tr>
       <td colspan="2">
         <form action="/leases/<%=@lease.id%>/edit" method="get">
