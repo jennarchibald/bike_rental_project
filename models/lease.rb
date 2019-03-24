@@ -125,14 +125,14 @@ class Lease
 
   # mark a lease as returned
 
-  def mark_as_returned()
-    @returned = true
-    self.update()
-
-    item = StockItem.find_by_id(@stock_item_id)
-    binding.pry()
-    item.mark_available()
-  end
+# NOT USED ? 
+  # def mark_as_returned()
+  #   @returned = true
+  #   self.update()
+  #
+  #   item = StockItem.find_by_id(@stock_item_id)
+  #   item.mark_available()
+  # end
 
   # map an array of hashes to leases
 
