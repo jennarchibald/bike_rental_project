@@ -1,5 +1,14 @@
 <h4><a href="/stock/new">Add an item to Stock</a></h4>
 
+
+<form action="/stock/filter" method="post">
+  <select name="type">
+    <option value="bike">Bikes</option>
+    <option value="helmet">Helmets</option>
+    <option value="lock">Locks</option>
+    <input type="submit" value="Filter Items">
+  </select>
+</form>
 <table>
   <tr>
     <th>ID</th>
@@ -10,7 +19,7 @@
   <% for item in @stock_items %>
   <tr>
     <td><%= item.id%></td>
-    <td><%= item.type %></td>
+    <td><%= item.type.capitalize %></td>
     <td><%= item.rental_cost %></td>
     <td><%= item.available ? 'yes': 'no' %></td>
     <td><form action="/stock/<%=item.id%>" method="get">

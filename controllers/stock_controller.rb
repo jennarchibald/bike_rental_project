@@ -1,3 +1,4 @@
+require('pry')
 require('sinatra')
 require('sinatra/contrib/all')
 
@@ -13,7 +14,6 @@ end
 get '/stock/new' do
   erb(:'stock/new')
 end
-
 
 get '/stock/:id' do
   @stock_item = StockItem.find_by_id(params[:id])
@@ -35,6 +35,11 @@ post '/stock' do
   item = StockItem.new(params)
   item.save()
   redirect '/stock'
+end
+
+post '/stock/filter' do
+  @stock_items = StockItem.find_by_type(params['type'])
+  erb(:'stock/index')
 end
 
 post '/stock/:id' do
