@@ -72,9 +72,9 @@ class StockItem
 
   def current_leases()
     sql = 'SELECT * FROM leases
-            WHERE stock_item_id = $1
-            AND returned = FALSE
-            ORDER BY end_date ASC'
+    WHERE stock_item_id = $1
+    AND returned = FALSE
+    ORDER BY end_date ASC'
     values = [@id]
     stock_item_hashes = SqlRunner.run(sql, values)
     return Lease.map_hashes(stock_item_hashes)
@@ -83,12 +83,30 @@ class StockItem
 
   def past_leases()
     sql = 'SELECT * FROM leases
-            WHERE stock_item_id = $1
-            AND returned = TRUE
-            ORDER BY end_date DESC'
+    WHERE stock_item_id = $1
+    AND returned = TRUE
+    ORDER BY end_date DESC'
     values = [@id]
     stock_item_hashes = SqlRunner.run(sql, values)
     return Lease.map_hashes(stock_item_hashes)
+  end
+
+  # return all available items
+  def self.available_items()
+    sql = "SELECT stock_items.* FROM
+    stock_items
+    LEFT JOIN leases
+    ON stock_items.id = leases.stock_item_id
+    WHERE leases.stock_item_id IS NULL"
+    items_hashes = SqlRunner.run(sql)
+    return StockItem.map_hashes(items_hashes)
+  end
+
+  # check if an item is available for rent (not on a lease)
+  def available?()
+    available_items = StockItem.available_items()
+    available_ids = available_items.map {|item| item.id}
+    return available_ids.include?(@id)
   end
 
   #  map an array of hashes into an array of stock items
