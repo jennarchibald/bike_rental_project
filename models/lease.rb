@@ -62,7 +62,9 @@ class Lease
     values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @returned, @id]
     SqlRunner.run(sql, values)
 
-    if @returned
+
+    if @returned == true
+      # binding.pry()
       item = StockItem.find_by_id(@stock_item_id)
       item.mark_available
     end
@@ -125,14 +127,14 @@ class Lease
 
   # mark a lease as returned
 
-# NOT USED ? 
-  # def mark_as_returned()
-  #   @returned = true
-  #   self.update()
-  #
-  #   item = StockItem.find_by_id(@stock_item_id)
-  #   item.mark_available()
-  # end
+# NOT USED ? - USED IN SEED FILE
+  def mark_as_returned()
+    @returned = true
+    self.update()
+
+    item = StockItem.find_by_id(@stock_item_id)
+    item.mark_available()
+  end
 
   # map an array of hashes to leases
 
