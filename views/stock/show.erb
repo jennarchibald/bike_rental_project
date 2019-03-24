@@ -12,6 +12,10 @@
     <td><%= @stock_item.rental_cost%></td>
   </tr>
   <tr>
+    <th>Available</th>
+    <td><%= @stock_item.available ? 'yes': 'no'%></td>
+  </tr>
+  <tr>
     <td><form action="/stock/<%=@stock_item.id%>/edit" method="get">
       <input type="submit" name="edit-item" value="Edit Details">
     </form></td>
