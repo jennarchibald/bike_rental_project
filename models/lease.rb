@@ -1,3 +1,4 @@
+require('pry')
 require_relative('../db/sql_runner')
 require_relative('./customer')
 require_relative('./stock_item')
@@ -60,6 +61,11 @@ class Lease
     sql = 'UPDATE leases SET (start_date, duration, end_date, customer_id, stock_item_id, returned) = ($1, $2, $3, $4, $5, $6) WHERE id = $7'
     values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @returned, @id]
     SqlRunner.run(sql, values)
+
+    if @returned
+      item = StockItem.find_by_id(@stock_item_id)
+      item.mark_available
+    end
   end
 
   # delete
@@ -124,6 +130,7 @@ class Lease
     self.update()
 
     item = StockItem.find_by_id(@stock_item_id)
+    binding.pry()
     item.mark_available()
   end
 
