@@ -73,7 +73,8 @@ class StockItem
   def current_leases()
     sql = 'SELECT * FROM leases
             WHERE stock_item_id = $1
-            AND returned = FALSE'
+            AND returned = FALSE
+            ORDER BY end_date ASC'
     values = [@id]
     stock_item_hashes = SqlRunner.run(sql, values)
     return Lease.map_hashes(stock_item_hashes)
@@ -83,7 +84,8 @@ class StockItem
   def past_leases()
     sql = 'SELECT * FROM leases
             WHERE stock_item_id = $1
-            AND returned = TRUE'
+            AND returned = TRUE
+            ORDER BY end_date DESC'
     values = [@id]
     stock_item_hashes = SqlRunner.run(sql, values)
     return Lease.map_hashes(stock_item_hashes)
