@@ -12,7 +12,7 @@ end
 
 get '/leases/new' do
   @customers = Customer.all()
-  @stock_items = StockItem.all()
+  @stock_items = StockItem.available_items()
   erb(:'lease/new')
 end
 
@@ -24,7 +24,7 @@ end
 
 get '/leases/:id/edit' do
   @customers = Customer.all()
-  @stock_items = StockItem.all()
+  @stock_items = StockItem.available_items()
   @lease = Lease.find_by_id(params[:id])
   erb(:'lease/edit')
 end

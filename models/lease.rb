@@ -31,6 +31,10 @@ class Lease
     sql = 'INSERT INTO leases (start_date, duration, end_date, customer_id, stock_item_id, returned) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id'
     values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @returned]
     @id = SqlRunner.run(sql, values).first['id'].to_i
+
+
+    item = StockItem.find_by_id(@stock_item_id)
+    item.mark_unavailable()
   end
 
   # read
@@ -118,6 +122,9 @@ class Lease
   def mark_as_returned()
     @returned = true
     self.update()
+
+    item = StockItem.find_by_id(@stock_item_id)
+    item.mark_available()
   end
 
   # map an array of hashes to leases
