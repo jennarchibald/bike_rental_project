@@ -145,6 +145,33 @@ class Lease
     item.mark_available()
   end
 
+  # find all leases of a certain status - active, past, returned
+
+  # find all active leases (returned is false)
+  def Lease.all_current()
+    leases = Lease.all()
+    current_leases = []
+    leases.each {|lease| current_leases.push(lease) if lease.returned == false}
+    return current_leases
+  end
+
+  # find all past leases (returned is true)
+  def Lease.all_past()
+    leases = Lease.all()
+    past_leases = []
+    leases.each {|lease| past_leases.push(lease) if lease.returned}
+    return past_leases
+  end
+
+  # find all overdue leases
+
+  def Lease.all_overdue()
+    leases = Lease.all()
+    overdue_leases = []
+    leases.each {|lease| overdue_leases.push(lease) if lease.overdue?}
+    return overdue_leases
+  end
+
   # map an array of hashes to leases
 
   def self.map_hashes(array)

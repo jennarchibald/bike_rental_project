@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Bike Rental</title>
-    <link rel="stylesheet" href="/style.css">
-  </head>
-  <body>
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/stock">Stock</a></li>
-        <li><a href="/customers">Customers</a></li>
-        <li><a href="/leases">Leases</a></li>
-      </ul>
-    </nav>
+<head>
+  <meta charset="utf-8">
+  <title>Bike Rental</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/stock">Stock</a></li>
+      <li><a href="/customers">Customers</a></li>
+      <li><a href="/leases">Leases</a></li>
+    </ul>
+  </nav>
+  <div class="yield">
     <%= yield %>
-  </body>
+  </div>
+</body>
 </html>

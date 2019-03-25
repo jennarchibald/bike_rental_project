@@ -1,12 +1,16 @@
-<div class="lease-sidebar">
-  <h4><a href="/leases/new">Start new Lease</a></h4>
-  <h4><a href="#active-leases">Active Leases</a></h4>
-  <h4><a href="#past-leases">Past Leases</a></h4>
-  <h4><a href="/leases">Back to Top</a></h4>
+<h4><a href="/leases/new">Start new Lease</a></h4>
 
-</div>
+<!-- <form action="/leases/filter" method="post">
+  <select name="filter">
+    <option value="all">All Items</option>
+    <option value="active">Active</option>
+    <option value="past">Past</option>
+    <option value="overdue">Overdue</option>
+    <input type="submit" value="Filter Leases">
+  </select>
+</form> -->
 
-<a name ="active-leases"><h3>Active Leases</h3></a>
+<h3>Active Leases</h3>
 
 <table>
   <tr>
@@ -32,7 +36,7 @@
   <% end %>
 </table>
 
-<a name = "past-leases"><h3>Past Leases</h3></a>
+<h3>Past Leases</h3>
 
 <table>
   <tr>
