@@ -28,7 +28,7 @@ li {
   margin-right: 30px;
 }
 
-table, form, h1, h3, h4 {
+table, form, h1, h2, h3, h4 {
   display: flex;
   justify-content: center;
   margin-top: 20px;
@@ -39,7 +39,9 @@ td {
   border-top: 1px solid silver;
 }
 
-
+label {
+  margin  : 5px 10px;
+}
 
 .overdue {
   background-color: salmon;
