@@ -8,6 +8,7 @@ also_reload('../models/*')
 
 get '/stock' do
   @stock_items = StockItem.all()
+  @item_types = ItemType.all()
   erb(:"stock/index")
 end
 
@@ -42,6 +43,7 @@ end
 post '/stock/filter' do
   redirect '/stock' if params['type'] == 'all'
   @stock_items = StockItem.find_by_type(params['type'])
+  @item_types = ItemType.all()
   erb(:'stock/index')
 end
 
