@@ -28,7 +28,7 @@ class ItemType
   # update
 
   def update()
-    sql = 'UPDATE item_types SET (name) = ($1) WHERE id = $2'
+    sql = 'UPDATE item_types SET name = $1 WHERE id = $2'
     values = [@name, @id]
     SqlRunner.run(sql, values)
   end
@@ -51,7 +51,7 @@ class ItemType
   def self.find_by_id(id)
     sql = 'SELECT * FROM item_types WHERE id = $1'
     values = [id]
-    result = SqlRunner.run(sql, values)
+    result = SqlRunner.run(sql, values).first
     return ItemType.new(result)
   end
 
