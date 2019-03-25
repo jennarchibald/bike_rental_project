@@ -1,5 +1,6 @@
 require('pry')
 require_relative('../db/sql_runner')
+require_relative('./stock_item')
 
 class ItemType
   attr_reader :id
@@ -53,6 +54,15 @@ class ItemType
     values = [id]
     result = SqlRunner.run(sql, values).first
     return ItemType.new(result)
+  end
+
+  # return all the stock items of this type
+
+  def all_items()
+    sql = "SELECT * FROM stock_items WHERE type_id = $1"
+    values = [@id]
+    result = SqlRunner.run(sql, values)
+    return StockItem.map_hashes(result)
   end
 
 end

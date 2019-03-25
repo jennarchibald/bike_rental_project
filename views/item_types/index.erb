@@ -7,6 +7,9 @@
     <td><form action="/item-types/<%= type.id %>/edit" method="get">
       <input type="submit" name="item-types-edit" value="Edit type">
     </form></td>
+    <td><form action="/item-types/<%= type.id %>/delete" method="get">
+      <input type="submit" name="item-types-delete" value="Delete this type">
+    </form></td>
   </tr>
   <% end %>
 </table>

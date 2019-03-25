@@ -28,11 +28,13 @@ li {
   margin-right: 30px;
 }
 
-table, form, h1, h2, h3, h4 {
+table, form, h1, h2, h3, h4, p {
   display: flex;
   justify-content: center;
   margin-top: 20px;
 }
+
+
 
 td {
   padding: 5px;

@@ -1,0 +1,44 @@
+<h3>Are you sure you wish to delete this item type?</h3>
+<p>This action cannot be reversed!</p>
+
+<p>If possible edit type instead</p>
+
+<table>
+  <td><form action="/item-types/<%= @type.id %>/edit" method="get">
+    <label for="intem-types-edit">Edit Type</label>
+    <input type="submit" name="item-types-edit" value="Edit type">
+  </form></td>
+</table>
+
+<p>Deleting this type will also delete the following items from stock!!!</p>
+<p>Any leases referencing these items will also be deleted!!!</p>
+
+
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Type</th>
+    <th>Rental Cost</th>
+    <th>Available</th>
+  </tr>
+  <% for item in @type.all_items %>
+  <tr>
+    <td><%= item.id%></td>
+    <td><%= item.type.capitalize %></td>
+    <td><%= item.rental_cost %></td>
+    <td><%= item.available ? 'yes': 'no' %></td>
+    <td><form action="/stock/<%=item.id%>" method="get">
+      <input type="submit" name="stock-details" value="More Details">
+    </form></td>
+  </tr>
+
+  <% end %>
+</table>
+
+<table>
+  <tr>
+    <td><form action="/item-types/<%= @type.id %>/delete" method="post">
+      <input type="submit" name="item-types-delete" value="Delete this type">
+    </form></td>
+  </tr>
+</table>
