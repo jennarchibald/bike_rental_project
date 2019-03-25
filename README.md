@@ -5,12 +5,12 @@ It is built using PostgreSQL, ruby, and sinatra.
 
 [Version 1.0](https://github.com/jennarchibald/bike_rental_project/tree/67867fd0ae6a306d1a6af637e1c3da2b8c8a8868)
 
-Allows for creation, editing and deletion of customers and stock items.
+-Allows for creation, editing and deletion of customers and stock items.
 
-Allows for filtering the index of stock items by type.
+-Allows for filtering the index of stock items by type.
 
-Allows for searching for customers by name.
+-Allows for searching for customers by name.
 
-Allows for creation and editing of leases.
+-Allows for creation and editing of leases.
 
-Allows for filtering of leases by status (active, returned and overdue).
+-Allows for filtering of leases by status (active, returned and overdue).
