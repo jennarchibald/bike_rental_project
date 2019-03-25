@@ -161,7 +161,7 @@ class Lease
 
   # find all active leases (returned is false)
   def self.all_current()
-    leases = Lease.all()
+    leases = Lease.all_ordered_by_end_date()
     current_leases = []
     leases.each {|lease| current_leases.push(lease) if lease.returned == false}
     return current_leases
@@ -169,7 +169,7 @@ class Lease
 
   # find all past leases (returned is true)
   def self.all_past()
-    leases = Lease.all()
+    leases = Lease.all_ordered_by_end_date()
     past_leases = []
     leases.each {|lease| past_leases.push(lease) if lease.returned}
     return past_leases
@@ -178,7 +178,7 @@ class Lease
   # find all overdue leases
 
   def self.all_overdue()
-    leases = Lease.all()
+    leases = Lease.all_ordered_by_end_date()
     overdue_leases = []
     leases.each {|lease| overdue_leases.push(lease) if lease.overdue?}
     return overdue_leases

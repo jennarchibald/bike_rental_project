@@ -40,7 +40,7 @@ end
 post '/leases/filter' do
   redirect '/leases' if params['filter'] == 'all'
   @leases = Lease.find_by_status(params['filter'])
-  erb(:'lease:index')
+  erb(:'lease/index')
 end
 
 post '/leases/:id' do

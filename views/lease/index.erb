@@ -1,16 +1,17 @@
 <h4><a href="/leases/new">Start new Lease</a></h4>
 
-<!-- <form action="/leases/filter" method="post">
+<form action="/leases/filter" method="post">
   <select name="filter">
-    <option value="all">All Items</option>
+    <option value="all">All Leases</option>
     <option value="active">Active</option>
     <option value="past">Past</option>
     <option value="overdue">Overdue</option>
     <input type="submit" value="Filter Leases">
   </select>
-</form> -->
+</form>
 
-<h3>Active Leases</h3>
+<% if @leases.any? {|lease| lease.returned == false}%>
+<h3>Leases</h3>
 
 <table>
   <tr>
@@ -19,6 +20,7 @@
     <th>Start Date</th>
     <th>End Date</th>
   </tr>
+  <% end %>
   <% for lease in @leases %>
   <% if lease.returned == false %>
   <tr class=<%= 'overdue' if lease.overdue?%>>
@@ -36,6 +38,8 @@
   <% end %>
 </table>
 
+<% if @leases.any? {|lease| lease.returned}%>
+
 <h3>Past Leases</h3>
 
 <table>
@@ -45,6 +49,7 @@
     <th>Start Date</th>
     <th>End Date</th>
   </tr>
+  <% end %>
   <% for lease in @leases %>
   <% if lease.returned %>
   <tr>
