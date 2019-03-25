@@ -1,0 +1,10 @@
+<table>
+  <% for type in @types %>
+    <tr>
+      <td><%= type.name.capitalize%></td>
+      <td><form action="/item-type/<%= type.id %>/edit" method="get">
+        <input type="submit" name="item-types-edit" value="Edit type">
+      </form></td>
+    </tr>
+  <% end %>
+</table>

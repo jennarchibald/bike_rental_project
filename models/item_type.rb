@@ -46,4 +46,13 @@ class ItemType
     SqlRunner.run(sql)
   end
 
+  # find a specific item type by id
+
+  def self.find_by_id(id)
+    sql = 'SELECT * FROM item_types WHERE id = $1'
+    values = [id]
+    result = SqlRunner.run(sql, values)
+    return ItemType.new(result)
+  end
+
 end
