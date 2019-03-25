@@ -6,6 +6,7 @@ require_relative('../models/lease')
 
 Customer.delete_all()
 StockItem.delete_all()
+ItemType.delete_all()
 
 
 # CUSTOMERS
@@ -54,62 +55,81 @@ customer5 = Customer.new({
 
 customer5.save()
 
+#  ITEM TYPES
+
+type1 = ItemType.new({
+  'name' => 'bike'
+  })
+
+type1.save()
+
+type2 = ItemType.new({
+  'name' => 'helmet'
+  })
+
+type2.save()
+
+type3 = ItemType.new({
+  'name' => 'lock'
+  })
+
+type3.save()
 
 
 
 # STOCK
 
 item1 = StockItem.new({
-  'type' => 'bike',
+  'type_id' => type1.id,
   'rental_cost' => '9.50'
   })
 
 item1.save()
 
 item2 = StockItem.new({
-  'type' => 'bike',
+  'type_id' => type1.id,
   'rental_cost' => '9.50'
   })
 
 item2.save()
 
 item3 = StockItem.new({
-  'type' => 'bike',
+  'type_id' => type1.id,
   'rental_cost' => '9.50'
   })
 
 item3.save()
 
 item4 = StockItem.new({
-  'type' => 'helmet',
+  'type_id' => type2.id,
   'rental_cost' => '0.50'
   })
 
 item4.save()
 
 item5 = StockItem.new({
-  'type' => 'helmet',
+  'type_id' => type2.id,
   'rental_cost' => '0.50'
   })
 
 item5.save()
 
 item6 = StockItem.new({
-  'type' => 'lock',
+  'type_id' => type3.id,
   'rental_cost' => '4.50'
   })
 
 item6.save()
 
 item7 = StockItem.new({
-  'type' => 'lock',
+  'type_id' => type3.id,
   'rental_cost' => '4.50'
   })
 
 item7.save()
 
 item8 = StockItem.new({
-  'type' => 'bike',
+  'type_id' => type1.id,
   'rental_cost' => '9.50'
   })
 

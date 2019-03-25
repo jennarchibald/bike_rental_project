@@ -1,12 +1,13 @@
 require_relative('../db/sql_runner')
 require_relative('./lease')
+require_relative('./item_type')
 
 class StockItem
-  attr_accessor :type, :rental_cost, :available
+  attr_accessor :type_id, :rental_cost, :available
   attr_reader :id
   def initialize(options)
     @id = options['id'].to_i if options['id']
-    @type = options['type']
+    @type_id = options['type_id'].to_i
     @rental_cost = options['rental_cost']
     if options['available'] == "f" || options['available'] == 'false'
       @available = false
@@ -21,8 +22,8 @@ class StockItem
   # create
 
   def save()
-    sql = 'INSERT INTO stock_items (type, rental_cost, available) VALUES ($1, $2, $3) RETURNING id'
-    values = [@type, @rental_cost, @available]
+    sql = 'INSERT INTO stock_items (type_id, rental_cost, available) VALUES ($1, $2, $3) RETURNING id'
+    values = [@type_id, @rental_cost, @available]
     @id = SqlRunner.run(sql, values).first['id'].to_i
   end
 
@@ -38,8 +39,8 @@ class StockItem
   # update
 
   def update()
-    sql = 'UPDATE stock_items SET (type, rental_cost, available) = ($1, $2, $3) WHERE id = $4'
-    values = [@type, @rental_cost, @available, @id]
+    sql = 'UPDATE stock_items SET (type_id, rental_cost, available) = ($1, $2, $3) WHERE id = $4'
+    values = [@type_id, @rental_cost, @available, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -70,7 +71,10 @@ class StockItem
   # find all stock items of a particular type
 
   def self.find_by_type(type)
-    sql = 'SELECT * FROM stock_items WHERE type = $1'
+    sql = 'SELECT stock_items.* FROM stock_items
+            INNER JOIN item_types
+            ON stock_items.type_id = item_types.id
+            WHERE item_types.name = $1'
     values = [type]
     stock_item_hashes = SqlRunner.run(sql, values)
     return StockItem.map_hashes(stock_item_hashes)
@@ -130,6 +134,15 @@ class StockItem
     available_items = StockItem.available_items()
     available_ids = available_items.map {|item| item.id}
     return available_ids.include?(@id)
+  end
+
+  # return the name of the item type
+
+  def type()
+    sql = 'SELECT name FROM item_types WHERE id = $1'
+    values = [@type_id]
+    result = SqlRunner.run(sql, values).first['name']
+    return result
   end
 
   #  map an array of hashes into an array of stock items
