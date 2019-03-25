@@ -1,20 +1,27 @@
 
 body {
-  background-color: lightyellow;
+  background-color: #efeeff;
 }
 
 nav {
-  background-color: PaleTurquoise;
-  padding: 10px;
+  background-color: #4c4fe0;
+  /* padding: 10px; */
   width: 100%;
   position: fixed;
   top: 0;
   left: 0;
   z-index: 2;
+  border-bottom: 2px solid black;
+  color: white;
+
+}
+
+a:visited {
+ color: lightcyan;
 }
 
 .yield {
-  margin-top: 100px;
+  margin-top: 150px;
 }
 
 ul {
@@ -35,6 +42,9 @@ table, form, h1, h2, h3, h4, p {
   margin-top: 20px;
 }
 
+h4 {
+  font-size: 20px;
+}
 
 
 td {
@@ -53,7 +63,7 @@ label {
 .sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  justify-content: center;
   height: 100%;
   width: 50;
   position: fixed;
@@ -61,8 +71,11 @@ label {
   top: 0;
   left: 0;
   margin-top: 30px;
-  padding-top: 60px;
-  padding-left: 10px;
-  padding-right: 10px;
-  background-color: white;
+  /* padding-top: 30px; */
+  /* padding-left: 10px;
+  padding-right: 10px; */
+  width: 170px;
+  background-color: #605b94;
+  border-right: 2px solid black;
+  text-align: center;
 }
