@@ -28,5 +28,14 @@ td {
 .lease-sidebar {
   display: flex;
   flex-direction: column;
-  position: 
+  justify-content: flex-start;
+  height: 100%;
+  width: 50;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  padding-top: 60px;
+  padding-left: 10px;
+  padding-right: 10px;
 }

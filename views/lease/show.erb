@@ -11,7 +11,7 @@
     </tr>
     <tr>
       <th>Item Leased</th>
-      <td><%= @lease.stock_item.type%></td>
+      <td><%= @lease.stock_item.type.capitalize %></td>
       <td>
         <form action="/stock/<%=@lease.stock_item_id%>" method="get">
           <input type="submit" name="more-stock-details" value="More Details">

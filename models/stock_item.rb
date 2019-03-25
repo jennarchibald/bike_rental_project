@@ -7,7 +7,7 @@ class StockItem
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @type = options['type']
-    @rental_cost = options['rental_cost'].to_f
+    @rental_cost = options['rental_cost']
     if options['available'] == "f"
       @available = false
     elsif options['available'] == "t"
@@ -123,7 +123,7 @@ class StockItem
     return StockItem.map_hashes(items_hashes)
   end
 
-  
+
 
   # check if an item is available for rent (not on a lease)
   def available?()

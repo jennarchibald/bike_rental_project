@@ -104,7 +104,7 @@ class Lease
   # return the total cost of a lease
 
   def calculate_total_cost()
-    daily_cost = stock_item().rental_cost
+    daily_cost = stock_item().rental_cost.to_f
     return @duration * daily_cost
   end
 

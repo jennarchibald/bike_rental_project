@@ -26,7 +26,7 @@
 <table>
   <% for lease in @customer.current_leases %>
     <tr>
-      <td><%= lease.stock_item.type %></td>
+      <td><%= lease.stock_item.type.capitalize %></td>
       <td><%= lease.start_date %></td>
       <td><%= lease.end_date %></td>
       <td><form action="/leases/<%=lease.id%>" method="get">
@@ -41,7 +41,7 @@
 <table>
   <% for lease in @customer.past_leases %>
     <tr>
-      <td><%= lease.stock_item.type %></td>
+      <td><%= lease.stock_item.type.capitalize %></td>
       <td><%= lease.start_date %></td>
       <td><%= lease.end_date %></td>
       <td><form action="/leases/<%=lease.id%>" method="get">

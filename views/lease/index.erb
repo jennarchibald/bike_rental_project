@@ -2,6 +2,7 @@
   <h4><a href="/leases/new">Start new Lease</a></h4>
   <h4><a href="#active-leases">Active Leases</a></h4>
   <h4><a href="#past-leases">Past Leases</a></h4>
+  <h4><a href="/leases">Back to Top</a></h4>
 
 </div>
 
@@ -18,7 +19,7 @@
   <% if lease.returned == false %>
   <tr>
     <td><%= lease.customer.first_name %> <%= lease.customer.last_name%></td>
-    <td><%= lease.stock_item.type %></td>
+    <td><%= lease.stock_item.type.capitalize %></td>
     <td><%= lease.start_date %></td>
     <td><%= lease.end_date %></td>
     <td><form action="/leases/<%=lease.id%>" method="get">
@@ -44,7 +45,7 @@
   <% if lease.returned %>
   <tr>
     <td><%= lease.customer.first_name %> <%= lease.customer.last_name%></td>
-    <td><%= lease.stock_item.type %></td>
+    <td><%= lease.stock_item.type.capitalize %></td>
     <td><%= lease.start_date %></td>
     <td><%= lease.end_date %></td>
     <td><form action="/leases/<%=lease.id%>" method="get">
