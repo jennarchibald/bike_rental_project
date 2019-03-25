@@ -136,7 +136,7 @@ class Lease
 
   # mark a lease as returned
 
-# NOT USED ? - USED IN SEED FILE
+  # NOT USED ? - USED IN SEED FILE
   def mark_as_returned()
     @returned = true
     self.update()
@@ -147,8 +147,20 @@ class Lease
 
   # find all leases of a certain status - active, past, returned
 
+  def self.find_by_status(status)
+    case status
+    when 'active'
+      return Lease.all_current()
+    when 'past'
+      return Lease.all_past()
+    when 'overdue'
+      return Lease.all_overdue()
+    end
+  end
+
+
   # find all active leases (returned is false)
-  def Lease.all_current()
+  def self.all_current()
     leases = Lease.all()
     current_leases = []
     leases.each {|lease| current_leases.push(lease) if lease.returned == false}
@@ -156,7 +168,7 @@ class Lease
   end
 
   # find all past leases (returned is true)
-  def Lease.all_past()
+  def self.all_past()
     leases = Lease.all()
     past_leases = []
     leases.each {|lease| past_leases.push(lease) if lease.returned}
@@ -165,7 +177,7 @@ class Lease
 
   # find all overdue leases
 
-  def Lease.all_overdue()
+  def self.all_overdue()
     leases = Lease.all()
     overdue_leases = []
     leases.each {|lease| overdue_leases.push(lease) if lease.overdue?}
