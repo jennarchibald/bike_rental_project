@@ -2,6 +2,7 @@
   <label for="type">Item type</label>
   <input type="text" name="type" id="type" value="<%= @stock_item.type%>">
   <label for="rental-cost">Rental Cost</label>
-  <input type="number" name="rental_cost" id="rental-cost" step="0.01" value="<%=@stock_item.rental_cost%>">
+  <input type="number" name="rental_cost" id="rental-cost" step="0.01" value="<%=@stock_item.rental_cost%>" min="0.01">
+  <input type="hidden" name="available" value="<%= @stock_item.available%>">
   <input type="submit" name="edit-stock-item" value="Save Changes">
 </form>

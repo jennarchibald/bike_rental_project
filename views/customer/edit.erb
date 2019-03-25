@@ -6,6 +6,6 @@
   <label for="contact-number">Contact Number</label>
   <input type="tel" name="contact_number" id="contact-number" value="<%= @customer.contact_number%>">
   <label for="age">Age</label>
-  <input type="number" name="age" id="age" value="<%=@customer.age%>">
+  <input type="number" name="age" id="age" value="<%=@customer.age%>" min ="10">
   <input type="submit" name="edit-customer" value="Save Changes">
 </form>
