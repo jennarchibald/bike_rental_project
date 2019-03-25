@@ -17,7 +17,7 @@
   </tr>
   <% for lease in @leases %>
   <% if lease.returned == false %>
-  <tr>
+  <tr class=<%= 'overdue' if lease.overdue?%>>
     <td><%= lease.customer.first_name %> <%= lease.customer.last_name%></td>
     <td><%= lease.stock_item.type.capitalize %></td>
     <td><%= lease.start_date %></td>
