@@ -1,6 +1,10 @@
 <form action="/stock/<%= @stock_item.id%>" method="post">
   <label for="type">Item type</label>
-  <input type="text" name="type" id="type" value="<%= @stock_item.type%>">
+  <select name="type_id">
+    <% for type in @types %>
+    <option value="<%= type.id%>"><%= type.name.capitalize %></option>
+    <% end %>
+  </select>
   <label for="rental-cost">Rental Cost</label>
   <input type="number" name="rental_cost" id="rental-cost" step="0.01" value="<%=@stock_item.rental_cost%>" min="0.01">
   <input type="hidden" name="available" value="<%= @stock_item.available%>">

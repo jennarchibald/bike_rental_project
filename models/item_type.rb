@@ -1,3 +1,4 @@
+require('pry')
 require_relative('../db/sql_runner')
 
 class ItemType
@@ -20,7 +21,8 @@ class ItemType
   def self.all()
     sql = 'SELECT * FROM item_types'
     type_hashes = SqlRunner.run(sql)
-    return ItemType.new(type_hashes)
+    # binding.pry()
+    return type_hashes.map {|hash| ItemType.new(hash)}
   end
 
   # update

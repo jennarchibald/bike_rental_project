@@ -2,7 +2,11 @@
 
 <form action="/stock" method="post">
   <label for="type">Item type</label>
-  <input type="text" name="type" id="type">
+  <select name="type_id">
+    <% for type in @types %>
+    <option value="<%= type.id%>"><%= type.name.capitalize %></option>
+    <% end %>
+  </select>
   <label for="rental-cost">Rental Cost</label>
   <input type="number" name="rental_cost" id="rental-cost" step="0.01" min = "0.01">
   <input type="submit" name="create-stock-item" value="Add Item to Stock">

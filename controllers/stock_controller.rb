@@ -12,6 +12,7 @@ get '/stock' do
 end
 
 get '/stock/new' do
+  @types = ItemType.all()
   erb(:'stock/new')
 end
 
@@ -21,6 +22,7 @@ get '/stock/:id' do
 end
 
 get '/stock/:id/edit' do
+  @types = ItemType.all()
   @stock_item = StockItem.find_by_id(params[:id])
   erb(:'stock/edit')
 end
