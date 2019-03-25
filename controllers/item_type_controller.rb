@@ -10,9 +10,19 @@ get '/item-types' do
   erb(:'item_types/index')
 end
 
+get '/item-types/new' do
+  erb(:'item_types/new')
+end
+
 get '/item-types/:id/edit' do
   @type = ItemType.find_by_id(params[:id])
   erb(:'item_types/edit')
+end
+
+post '/item-types' do
+  item = ItemType.new(params)
+  item.save()
+  redirect '/item-types'
 end
 
 post '/item-types/:id' do
