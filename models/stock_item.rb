@@ -8,9 +8,9 @@ class StockItem
     @id = options['id'].to_i if options['id']
     @type = options['type']
     @rental_cost = options['rental_cost']
-    if options['available'] == "f"
+    if options['available'] == "f" || options['available'] == 'false'
       @available = false
-    elsif options['available'] == "t"
+    elsif options['available'] == "t" || options['available'] == 'true'
       @available = true
     else
       @available = true
