@@ -27,6 +27,33 @@ customer2 = Customer.new({
 
 customer2.save()
 
+customer3 = Customer.new({
+  'first_name' => 'Alex',
+  'last_name' => 'Jones',
+  'contact_number' => '08999223345',
+  'age' => '16'
+  })
+
+customer3.save()
+
+customer4 = Customer.new({
+  'first_name' => 'Ben',
+  'last_name' => 'Smith',
+  'contact_number' => '08979223345',
+  'age' => '26'
+  })
+
+customer4.save()
+
+customer5 = Customer.new({
+  'first_name' => 'Adam',
+  'last_name' => 'Black',
+  'contact_number' => '08979223344',
+  'age' => '29'
+  })
+
+customer5.save()
+
 
 
 
@@ -74,6 +101,20 @@ item6 = StockItem.new({
 
 item6.save()
 
+item7 = StockItem.new({
+  'type' => 'lock',
+  'rental_cost' => '4.50'
+  })
+
+item7.save()
+
+item8 = StockItem.new({
+  'type' => 'bike',
+  'rental_cost' => '9.50'
+  })
+
+item8.save()
+
 
 # LEASES
 
@@ -110,7 +151,27 @@ lease4 = Lease.new({
 
 lease4.save()
 
-lease1.mark_as_returned()
+lease5 = Lease.new({
+  'start_date' => '2019-03-14',
+  'duration' => '7',
+  'customer_id' => customer3.id,
+  'stock_item_id' => item7.id
+  })
+
+lease5.save()
+
+lease6 = Lease.new({
+  'duration' => '7',
+  'customer_id' => customer5.id,
+  'stock_item_id' => item8.id
+  })
+
+lease6.save()
+
+lease1.returned = true
+lease1.update()
+lease6.returned = true
+lease6.update()
 
 
 binding.pry()
