@@ -4,19 +4,22 @@ require_relative('./customer')
 require_relative('./stock_item')
 
 class Lease
-  attr_accessor :start_date, :duration, :end_date, :customer_id, :stock_item_id, :returned
+  attr_accessor :start_date, :duration, :end_date, :customer_id, :stock_item_id, :returned, :total_cost
   attr_reader :id
   def initialize(options)
     @id = options['id'].to_i if options['id']
+
     if options['start_date']
       @start_date = Date.parse(options['start_date'])
     else
       @start_date = Date::today
     end
+
     @duration = options['duration'].to_i
     @end_date = @start_date + @duration
     @customer_id = options['customer_id'].to_i
     @stock_item_id = options['stock_item_id'].to_i
+
     if options['returned'] == "f"
       @returned = false
     elsif options['returned'] == "t"
@@ -24,13 +27,19 @@ class Lease
     else
       @returned = false
     end
+
+    if options['total_cost']
+      @total_cost = options['total_cost']
+    else
+      @total_cost = calculate_total_cost()
+    end
   end
 
   # create
 
   def save()
-    sql = 'INSERT INTO leases (start_date, duration, end_date, customer_id, stock_item_id, returned) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id'
-    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @returned]
+    sql = 'INSERT INTO leases (start_date, duration, end_date, customer_id, stock_item_id, returned, total_cost) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id'
+    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @returned, @total_cost]
     @id = SqlRunner.run(sql, values).first['id'].to_i
 
 
@@ -58,8 +67,8 @@ class Lease
   # update
 
   def update()
-    sql = 'UPDATE leases SET (start_date, duration, end_date, customer_id, stock_item_id, returned) = ($1, $2, $3, $4, $5, $6) WHERE id = $7'
-    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @returned, @id]
+    sql = 'UPDATE leases SET (start_date, duration, end_date, customer_id, stock_item_id, returned, total_cost) = ($1, $2, $3, $4, $5, $6, $7) WHERE id = $8'
+    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @returned, @total_cost, @id]
     SqlRunner.run(sql, values)
 
 
@@ -94,7 +103,7 @@ class Lease
 
   # return the total cost of a lease
 
-  def total_cost()
+  def calculate_total_cost()
     daily_cost = stock_item().rental_cost
     return @duration * daily_cost
   end
