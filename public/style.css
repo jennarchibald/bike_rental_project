@@ -1,7 +1,26 @@
 
 body {
-  background-color: #efeeff;
+  background-color: #F0F2F2;
 }
+
+img {
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  display:flex;
+  /* animation-duration: 5s;
+  animation-name: slidein; */
+}
+/* @keyframes slidein {
+  from {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  to {
+    margin-left: 100%;
+  }
+} */
 
 nav {
   background-color: #4c4fe0;
@@ -40,6 +59,7 @@ table, form, h1, h2, h3, h4, p {
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  text-align: center;
 }
 
 h4 {

@@ -23,9 +23,9 @@
 
 <p>Deleting this item will also delete the following lease records!!!</p>
 
-
+<% if @stock_item.current_leases.length >0 %>
 <h3>Current Rental</h3>
-
+<% end %>
 <table>
   <% for lease in @stock_item.current_leases %>
   <tr>
@@ -39,8 +39,9 @@
   <% end %>
 </table>
 
+<% if @stock_item.past_leases.length > 0 %>
 <h3>Past Rentals</h3>
-
+<% end %>
 <table>
   <% for lease in @stock_item.past_leases %>
   <tr>
