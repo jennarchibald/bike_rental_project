@@ -44,6 +44,6 @@ end
 
 post '/leases/:id' do
   lease = Lease.new(params)
-  lease.update()
+  lease.calculate_total_cost()
   redirect '/leases'
 end
