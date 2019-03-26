@@ -160,22 +160,44 @@ leased_item2 = LeasedItem.new({
 
 leased_item2.save()
 
-# lease2 = Lease.new({
-#   'duration' => '3',
-#   'customer_id' => customer2.id,
-#   'stock_item_id' => item2.id
-#   })
-#
-# lease2.save()
-#
-# lease3 = Lease.new({
-#   'duration' => '7',
-#   'customer_id' => customer1.id,
-#   'stock_item_id' => item4.id
-#   })
-#
-# lease3.save()
-#
+lease2 = Lease.new({
+  'duration' => '3',
+  'customer_id' => customer2.id,
+  })
+
+lease2.save()
+
+
+leased_item3 = LeasedItem.new({
+  'lease_id' => lease2.id,
+  'stock_item_id' => item3.id
+  })
+
+leased_item3.save()
+
+leased_item4 = LeasedItem.new({
+  'lease_id' => lease2.id,
+  'stock_item_id' => item4.id
+  })
+
+leased_item4.save()
+
+lease3 = Lease.new({
+  'duration' => '7',
+  'customer_id' => customer1.id,
+  'start_date' => '2019-01-01'
+  })
+
+lease3.save()
+
+
+leased_item5 = LeasedItem.new({
+  'lease_id' => lease3.id,
+  'stock_item_id' => item5.id
+  })
+
+leased_item5.save()
+
 # lease4 = Lease.new({
 #   'start_date' => '2019-03-14',
 #   'duration' => '7',

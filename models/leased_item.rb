@@ -17,6 +17,9 @@ class LeasedItem
     sql = "INSERT INTO leased_items (lease_id, stock_item_id) VALUES ($1, $2) RETURNING id"
     values = [@lease_id, @stock_item_id]
     @id = SqlRunner.run(sql, values).first['id'].to_i
+
+    lease = Lease.find_by_id(@lease_id)
+    lease.calculate_total_cost
   end
 
   # read

@@ -27,11 +27,8 @@ class Lease
       @returned = false
     end
 
-    if options['total_cost']
-      @total_cost = options['total_cost']
-    else
-      @total_cost = calculate_total_cost()
-    end
+    @total_cost = options['total_cost']
+
   end
 
   # create
@@ -103,8 +100,9 @@ class Lease
   def calculate_total_cost()
     items = self.stock_items()
     return 0 if items.length == 0
-    daily_cost = items.reduce(0) {|sum, item| sum += item.rental_cost()}
-    return @duration * daily_cost
+    daily_cost = items.reduce(0) {|sum, item| sum += item.rental_cost.to_f}
+    @total_cost = @duration * daily_cost
+    self.update()
   end
 
   # return the customer who leased the item

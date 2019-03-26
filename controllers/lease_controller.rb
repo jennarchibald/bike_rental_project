@@ -43,10 +43,9 @@ post '/leases/filter' do
   @leases = Lease.find_by_status(params['filter'])
   erb(:'lease/index')
 end
-#
-# post '/leases/:id' do
-#   # binding.pry()
-#   lease = Lease.new(params)
-#   lease.update()
-#   redirect '/leases'
-# end
+
+post '/leases/:id' do
+  lease = Lease.new(params)
+  lease.update()
+  redirect '/leases'
+end
