@@ -12,12 +12,7 @@
     <option value="<%= customer.id%>"><%= customer.first_name%> <%= customer.last_name%></option>
     <%end%>
   </select>
-  <label for="stock-item">Item</label>
-  <select name="stock_item_id" id = "stock-item">
-    <% for item in @stock_items %>
-    <option value="<%= item.id%>"><%= item.type%> (<%=item.id%>)</option>
-    <%end%>
-  </select>
+
   <label for="duration">Duration (days)</label>
   <input type="number" name="duration" value="7" min="1">
   <input type="submit" name="new_lease" value="Create New Lease">

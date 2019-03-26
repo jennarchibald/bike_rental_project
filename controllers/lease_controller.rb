@@ -22,19 +22,19 @@ get '/leases/:id' do
   erb(:'lease/show')
 end
 
-get '/leases/:id/edit' do
-  @customers = Customer.all()
-  @stock_items = StockItem.available_items()
-  @lease = Lease.find_by_id(params[:id])
-  @stock_items.push(StockItem.find_by_id(@lease.stock_item_id))
-  erb(:'lease/edit')
-end
+# get '/leases/:id/edit' do
+#   @customers = Customer.all()
+#   @stock_items = StockItem.available_items()
+#   @lease = Lease.find_by_id(params[:id])
+#   @stock_items.push(StockItem.find_by_id(@lease.stock_item_id))
+#   erb(:'lease/edit')
+# end
 
 
 post '/leases' do
-  lease = Lease.new(params)
-  lease.save()
-  redirect '/leases'
+  @lease = Lease.new(params)
+  @lease.save()
+  erb(:'leased_items/new')
 end
 
 post '/leases/filter' do
@@ -42,10 +42,10 @@ post '/leases/filter' do
   @leases = Lease.find_by_status(params['filter'])
   erb(:'lease/index')
 end
-
-post '/leases/:id' do
-  # binding.pry()
-  lease = Lease.new(params)
-  lease.update()
-  redirect '/leases'
-end
+#
+# post '/leases/:id' do
+#   # binding.pry()
+#   lease = Lease.new(params)
+#   lease.update()
+#   redirect '/leases'
+# end
