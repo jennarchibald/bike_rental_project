@@ -83,8 +83,10 @@ class StockItem
   # find all current leases for this item
 
   def current_leases()
-    sql = 'SELECT * FROM leases
-    WHERE stock_item_id = $1
+    sql = 'SELECT leases.* FROM leases
+    INNER JOIN leased_items
+    ON leases.id = leased_items.lease_id
+    WHERE leased_items.stock_item_id = $1
     AND returned = FALSE
     ORDER BY end_date ASC'
     values = [@id]
@@ -94,8 +96,10 @@ class StockItem
   # find all past leases for this item
 
   def past_leases()
-    sql = 'SELECT * FROM leases
-    WHERE stock_item_id = $1
+    sql = 'SELECT leases.* FROM leases
+    INNER JOIN leased_items
+    ON leases.id = leased_items.lease_id
+    WHERE leased_items.stock_item_id = $1
     AND returned = TRUE
     ORDER BY end_date DESC'
     values = [@id]

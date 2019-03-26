@@ -3,6 +3,7 @@ require('pry-byebug')
 require_relative('../models/customer')
 require_relative('../models/stock_item')
 require_relative('../models/lease')
+require_relative('../models/leased_item')
 
 Customer.delete_all()
 StockItem.delete_all()
@@ -141,57 +142,67 @@ item8.save()
 lease1 = Lease.new({
   'duration' => '7',
   'customer_id' => customer1.id,
-  'stock_item_id' => item1.id
   })
 
 lease1.save()
 
-lease2 = Lease.new({
-  'duration' => '3',
-  'customer_id' => customer2.id,
+leased_item1 = LeasedItem.new({
+  'lease_id' => lease1.id,
+  'stock_item_id' => item1.id
+  })
+
+leased_item1.save()
+
+leased_item2 = LeasedItem.new({
+  'lease_id' => lease1.id,
   'stock_item_id' => item2.id
   })
 
-lease2.save()
+leased_item2.save()
 
-lease3 = Lease.new({
-  'duration' => '7',
-  'customer_id' => customer1.id,
-  'stock_item_id' => item4.id
-  })
+# lease2 = Lease.new({
+#   'duration' => '3',
+#   'customer_id' => customer2.id,
+#   'stock_item_id' => item2.id
+#   })
+#
+# lease2.save()
+#
+# lease3 = Lease.new({
+#   'duration' => '7',
+#   'customer_id' => customer1.id,
+#   'stock_item_id' => item4.id
+#   })
+#
+# lease3.save()
+#
+# lease4 = Lease.new({
+#   'start_date' => '2019-03-14',
+#   'duration' => '7',
+#   'customer_id' => customer2.id,
+#   'stock_item_id' => item5.id
+#   })
+#
+# lease4.save()
+#
+# lease5 = Lease.new({
+#   'start_date' => '2019-03-14',
+#   'duration' => '7',
+#   'customer_id' => customer3.id,
+#   'stock_item_id' => item7.id
+#   })
+#
+# lease5.save()
+#
+# lease6 = Lease.new({
+#   'duration' => '7',
+#   'customer_id' => customer5.id,
+#   'stock_item_id' => item8.id
+#   })
+#
+# lease6.save()
 
-lease3.save()
 
-lease4 = Lease.new({
-  'start_date' => '2019-03-14',
-  'duration' => '7',
-  'customer_id' => customer2.id,
-  'stock_item_id' => item5.id
-  })
-
-lease4.save()
-
-lease5 = Lease.new({
-  'start_date' => '2019-03-14',
-  'duration' => '7',
-  'customer_id' => customer3.id,
-  'stock_item_id' => item7.id
-  })
-
-lease5.save()
-
-lease6 = Lease.new({
-  'duration' => '7',
-  'customer_id' => customer5.id,
-  'stock_item_id' => item8.id
-  })
-
-lease6.save()
-
-lease1.returned = true
-lease1.update()
-lease6.returned = true
-lease6.update()
 
 
 binding.pry()

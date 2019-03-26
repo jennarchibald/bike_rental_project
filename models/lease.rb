@@ -4,7 +4,7 @@ require_relative('./customer')
 require_relative('./stock_item')
 
 class Lease
-  attr_accessor :start_date, :duration, :end_date, :customer_id, :stock_item_id, :returned, :total_cost
+  attr_accessor :start_date, :duration, :end_date, :customer_id,  :returned, :total_cost
   attr_reader :id
   def initialize(options)
     @id = options['id'].to_i if options['id']
@@ -18,7 +18,6 @@ class Lease
     @duration = options['duration'].to_i
     @end_date = @start_date + @duration
     @customer_id = options['customer_id'].to_i
-    @stock_item_id = options['stock_item_id'].to_i
 
     if options['returned'] == "f"
       @returned = false
@@ -38,13 +37,11 @@ class Lease
   # create
 
   def save()
-    sql = 'INSERT INTO leases (start_date, duration, end_date, customer_id, stock_item_id, returned, total_cost) VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING id'
-    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @returned, @total_cost]
+    sql = 'INSERT INTO leases (start_date, duration, end_date, customer_id, returned, total_cost) VALUES ($1, $2, $3, $4, $5, $6) RETURNING id'
+    values = [@start_date, @duration, @end_date, @customer_id,  @returned, @total_cost]
     @id = SqlRunner.run(sql, values).first['id'].to_i
 
 
-    item = StockItem.find_by_id(@stock_item_id)
-    item.mark_unavailable()
   end
 
   # read
@@ -67,16 +64,16 @@ class Lease
   # update
 
   def update()
-    sql = 'UPDATE leases SET (start_date, duration, end_date, customer_id, stock_item_id, returned, total_cost) = ($1, $2, $3, $4, $5, $6, $7) WHERE id = $8'
-    values = [@start_date, @duration, @end_date, @customer_id, @stock_item_id, @returned, @total_cost, @id]
+    sql = 'UPDATE leases SET (start_date, duration, end_date, customer_id, returned, total_cost) = ($1, $2, $3, $4, $5, $6) WHERE id = $7'
+    values = [@start_date, @duration, @end_date, @customer_id, @returned, @total_cost, @id]
     SqlRunner.run(sql, values)
 
 
-    if @returned == true
-      # binding.pry()
-      item = StockItem.find_by_id(@stock_item_id)
-      item.mark_available
-    end
+    # if @returned == true
+    #   # binding.pry()
+    #   item = StockItem.find_by_id(@stock_item_id)
+    #   item.mark_available
+    # end
   end
 
   # delete
@@ -104,7 +101,9 @@ class Lease
   # return the total cost of a lease
 
   def calculate_total_cost()
-    daily_cost = stock_item().rental_cost.to_f
+    items = self.stock_items()
+    return 0 if items.length == 0
+    daily_cost = items.reduce(0) {|sum, item| sum += item.rental_cost()}
     return @duration * daily_cost
   end
 
@@ -117,13 +116,16 @@ class Lease
     return Customer.new(customer_hash)
   end
 
-  # return the item which was leased
+  # return the items which were leased
 
-  def stock_item()
-    sql = 'SELECT * FROM stock_items WHERE id = $1'
-    values = [@stock_item_id]
-    stock_item_hash = SqlRunner.run(sql, values).first
-    return StockItem.new(stock_item_hash)
+  def stock_items()
+    sql = "SELECT stock_items.* FROM stock_items
+            INNER JOIN leased_items
+            ON stock_items.id = leased_items.stock_item_id
+            WHERE leased_items.lease_id = $1"
+    values = [@id]
+    stock_item_hashes = SqlRunner.run(sql, values)
+    return stock_item_hashes.map {|hash| StockItem.new(hash)}
   end
 
   # return true if a lease is overdue (the end_date has passed)
@@ -137,13 +139,13 @@ class Lease
   # mark a lease as returned
 
   # NOT USED ? - USED IN SEED FILE
-  def mark_as_returned()
-    @returned = true
-    self.update()
-
-    item = StockItem.find_by_id(@stock_item_id)
-    item.mark_available()
-  end
+  # def mark_as_returned()
+  #   @returned = true
+  #   self.update()
+  #
+  #   item = StockItem.find_by_id(@stock_item_id)
+  #   item.mark_available()
+  # end
 
   # find all leases of a certain status - active, past, returned
 
