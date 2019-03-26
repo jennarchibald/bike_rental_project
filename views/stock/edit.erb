@@ -4,7 +4,7 @@
   <h4><a href="/stock">Back to Top</a></h4>
 </div>
 
-<form action="/stock/<%= @stock_item.id%>" method="post">
+<form class= "vertical-form" action="/stock/<%= @stock_item.id%>" method="post">
   <label for="type">Item type</label>
   <select name="type_id">
     <% for type in @types %>

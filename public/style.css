@@ -34,7 +34,6 @@ nav {
   z-index: 2;
   border-bottom: 2px solid black;
   color: white;
-
 }
 
 a {
@@ -75,6 +74,11 @@ form {
   align-items: center;
   margin: 0.8em;
 }
+
+.vertical-form {
+  flex-direction: column;
+}
+
 
 h4 {
   font-size: 1em;

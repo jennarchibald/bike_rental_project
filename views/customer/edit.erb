@@ -3,7 +3,7 @@
   <h4><a href="/customers">Back to Top</a></h4>
 </div>
 
-<form action="/customers/<%=@customer.id%>" method="post">
+<form class= "vertical-form" action="/customers/<%=@customer.id%>" method="post">
   <label for="first-name">First Name</label>
   <input type="text" name="first_name" id="first-name" value = "<%= @customer.first_name%>">
   <label for="last-name">Last Name</label>

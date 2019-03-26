@@ -3,7 +3,7 @@
   <h4><a href="/leases">Back to Top</a></h4>
 </div>
 
-<form action="/leases/<%= @lease.id %>" method="post">
+<form class= 'vertical-form' action="/leases/<%= @lease.id %>" method="post">
   <label for="customer">Customer Name</label>
   <select name="customer_id" id="customer">
     <% for customer in @customers %>

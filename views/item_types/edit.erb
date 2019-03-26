@@ -4,7 +4,7 @@
   <h4><a href="/item-types">Back to Top</a></h4>
 </div>
 
-<form action="/item-types/<%= @type.id %>" method="post">
+<form class="vertical-form" action="/item-types/<%= @type.id %>" method="post">
   <label for="item-name">Type Name</label>
   <input type="text" name="name" id = "item-name" value= "<%= @type.name%>">
   <input type="submit" name="Submit" value="Submit Changes">
