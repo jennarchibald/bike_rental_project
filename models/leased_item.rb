@@ -51,8 +51,22 @@ class LeasedItem
     SqlRunner.run(sql)
   end
 
+  # find a leased-item by its id
 
+  def self.find_by_id(id)
+    sql = "SELECT * FROM leased_items WHERE id = $1"
+    values = [@id]
+    result = SqlRunner.run(sql, values).first
+    return LeasedItem.new(result)
+  end
 
+  # delete an item from a lease using the lease_id and item_id
+
+  def self.delete_item_from_lease(item_id, lease_id)
+    sql = "DELETE FROM leased_items WHERE stock_item_id = $1 AND lease_id = $2"
+    values = [item_id, lease_id]
+    SqlRunner.run(sql, values)
+  end
 
 
 end

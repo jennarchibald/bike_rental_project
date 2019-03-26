@@ -6,6 +6,11 @@
     <td>
       <%= item.type %>
     </td>
+    <td><form action="/leased-items/<%= @lease.id %>/delete" method="post">
+      <input type="hidden" name="item_id" value="<%= item.id %>">
+      <input type="hidden" name="lease_id" value="<%= @lease.id %>">
+      <input type="submit" name="delete-from-lease" value="Remove from Lease">
+    </form></td>
   </tr>
 
 

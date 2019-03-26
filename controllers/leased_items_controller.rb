@@ -11,10 +11,18 @@ post '/leased-items' do
   erb(:'leased_items/new')
 end
 
-post '/leased-items/:id' do
+post '/leased-items/:id/delete' do
+  LeasedItem.delete_item_from_lease(params['item_id'], params['lease_id'])
+  # binding.pry()
+  @lease = Lease.find_by_id(params[:id])
+  @items = StockItem.available_items()
+  erb(:'leased_items/new')
+end
+
+post '/leased-items/:lease_id' do
   leaseditem = LeasedItem.new(params)
   leaseditem.save()
   @items = StockItem.available_items()
-  @lease = Lease.find_by_id(params[:id])
+  @lease = Lease.find_by_id(params[:lease_id])
   erb(:'leased_items/new')
 end

@@ -128,6 +128,7 @@ class Lease
     return stock_item_hashes.map {|hash| StockItem.new(hash)}
   end
 
+
   # return true if a lease is overdue (the end_date has passed)
 
   def overdue?()
