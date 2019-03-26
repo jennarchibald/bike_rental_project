@@ -61,12 +61,18 @@ class Customer
   # search for a customer by name
 
   def self.search_by_name(name)
+    string_array = name.split(' ')
+    customers = []
+    for string in string_array
+
     sql = "SELECT * FROM customers
-            WHERE LOWER(first_name) = $1
-            OR LOWER(last_name) = $1"
-    values = [name.downcase]
+            WHERE LOWER(first_name) LIKE $1
+            OR LOWER(last_name) LIKE $1"
+    values = ["%" + string.downcase + "%"]
     customers_hashes = SqlRunner.run(sql, values)
-      return customers_hashes.map {|hash| Customer.new(hash)}
+    customers << customers_hashes.map {|hash| Customer.new(hash)}
+    end
+    customers = customers.flatten.uniq {|customer| customer.id}
   end
 
 

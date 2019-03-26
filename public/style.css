@@ -61,6 +61,11 @@ li {
   margin-right: 2em;
 }
 
+h1 {
+  color: #FB7959;
+  text-shadow: 2px 2px #7D8A92;
+}
+
 table, h1, h2, h3, h4, p {
   display: flex;
   justify-content: center;
@@ -77,6 +82,10 @@ form {
 
 .vertical-form {
   flex-direction: column;
+}
+
+.vertical-form input {
+  margin-top: 10px;
 }
 
 
