@@ -79,3 +79,8 @@ label {
   border-right: 2px solid black;
   text-align: center;
 }
+
+.namesearch {
+  width: 150px;
+  text-align: center;
+}

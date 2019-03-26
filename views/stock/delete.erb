@@ -21,6 +21,39 @@
   </tr>
 </table>
 
+<p>Deleting this item will also delete the following lease records!!!</p>
+
+
+<h3>Current Rental</h3>
+
+<table>
+  <% for lease in @stock_item.current_leases %>
+  <tr>
+    <td><%= lease.customer.first_name %> <%= lease.customer.last_name %></td>
+    <td><%= lease.start_date %></td>
+    <td><%= lease.end_date %></td>
+    <td><form action="/leases/<%=lease.id%>" method="get">
+      <input type="submit" name="more-lease-details" value="More Details">
+    </form></td>
+  </tr>
+  <% end %>
+</table>
+
+<h3>Past Rentals</h3>
+
+<table>
+  <% for lease in @stock_item.past_leases %>
+  <tr>
+    <td><%= lease.customer.first_name %> <%= lease.customer.last_name %></td>
+    <td><%= lease.start_date %></td>
+    <td><%= lease.end_date %></td>
+    <td><form action="/leases/<%=lease.id%>" method="get">
+      <input type="submit" name="more-lease-details" value="More Details">
+    </form></td>
+  </tr>
+  <% end %>
+</table>
+
 <form action="/stock/<%=@stock_item.id%>/delete" method="post">
   <input type="submit" name="delete" value="Delete Item">
 </form>

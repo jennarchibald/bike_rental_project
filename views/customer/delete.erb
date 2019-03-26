@@ -5,6 +5,7 @@
 
 <h3>Are you sure you wish to delete this customer?</h3>
 <p>This action cannot be reversed!</p>
+
 <table>
   <tr>
     <th>Name</th>
@@ -18,6 +19,39 @@
     <th>Age</th>
     <td><%= @customer.age%></td>
   </tr>
+</table>
+
+<p>Deleting this customer will also delete the following lease records!!!</p>
+
+<h3>Current Rentals</h3>
+
+<table>
+  <% for lease in @customer.current_leases %>
+    <tr>
+      <td><%= lease.stock_item.type.capitalize %></td>
+      <td><%= lease.start_date %></td>
+      <td><%= lease.end_date %></t
+        d>
+      <td><form action="/leases/<%=lease.id%>" method="get">
+        <input type="submit" name="more-lease-details" value="More Details">
+      </form></td>
+    </tr>
+  <% end %>
+</table>
+
+<h3>Past Rentals</h3>
+
+<table>
+  <% for lease in @customer.past_leases %>
+    <tr>
+      <td><%= lease.stock_item.type.capitalize %></td>
+      <td><%= lease.start_date %></td>
+      <td><%= lease.end_date %></td>
+      <td><form action="/leases/<%=lease.id%>" method="get">
+        <input type="submit" name="more-lease-details" value="More Details">
+      </form></td>
+    </tr>
+  <% end %>
 </table>
 
 <form action="/customers/<%=@customer.id%>/delete" method="post">
