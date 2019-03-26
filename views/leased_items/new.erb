@@ -1,3 +1,25 @@
-hello<%=
+<% if @lease.stock_items.length > 0 %>
+<table>
+  <% for item in @lease.stock_items %>
+  <tr>
+    <td><%= item.id %></td>
+    <td>
+      <%= item.type %>
+    </td>
+  </tr>
 
-@lease.id%>
+
+  <% end %>
+</table>
+<% end %>
+
+<form action="/leased-items/<%= @lease.id %>" method="post">
+  <input type="hidden" name="lease_id" value="<%= @lease.id %>">
+  <label for="stock_item_id">Add Item to Lease</label>
+  <select name="stock_item_id">
+    <% for item in @items %>
+    <option value="<%= item.id %>"><%= item.id %> <%= item.type.capitalize %></option>
+    <% end %>
+  </select>
+  <input type="submit" name="add-item" value="Done">
+</form>

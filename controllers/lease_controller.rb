@@ -34,6 +34,7 @@ end
 post '/leases' do
   @lease = Lease.new(params)
   @lease.save()
+  @items = StockItem.available_items()
   erb(:'leased_items/new')
 end
 
