@@ -195,7 +195,6 @@ leased_item5 = LeasedItem.new({
   'lease_id' => lease3.id,
   'stock_item_id' => item5.id
   })
-
 leased_item5.save()
 
 # lease4 = Lease.new({

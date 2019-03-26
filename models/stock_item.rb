@@ -24,7 +24,9 @@ class StockItem
   def self.all()
     sql = 'SELECT * FROM stock_items'
     stock_item_hashes = SqlRunner.run(sql)
-    return StockItem.map_hashes(stock_item_hashes)
+    items = StockItem.map_hashes(stock_item_hashes)
+    items.sort_by {|item| item.available.to_s}
+    return items.reverse
   end
 
   # update
@@ -68,7 +70,10 @@ class StockItem
     WHERE item_types.name = $1'
     values = [type]
     stock_item_hashes = SqlRunner.run(sql, values)
-    return StockItem.map_hashes(stock_item_hashes)
+    items =  StockItem.map_hashes(stock_item_hashes)
+    items.sort_by {|item| item.available.to_s}
+    return items.reverse
+
   end
 
   # find all current leases for this item
