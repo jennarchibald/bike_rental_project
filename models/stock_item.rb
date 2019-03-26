@@ -3,35 +3,26 @@ require_relative('./lease')
 require_relative('./item_type')
 
 class StockItem
-  attr_accessor :type_id, :rental_cost, :available
+  attr_accessor :type_id, :rental_cost
   attr_reader :id
   def initialize(options)
     @id = options['id'].to_i if options['id']
     @type_id = options['type_id'].to_i
     @rental_cost = options['rental_cost']
-    if options['available'] == "f" || options['available'] == 'false'
-      @available = false
-    elsif options['available'] == "t" || options['available'] == 'true'
-      @available = true
-    else
-      @available = true
-    end
   end
 
 
   # create
 
   def save()
-    sql = 'INSERT INTO stock_items (type_id, rental_cost, available) VALUES ($1, $2, $3) RETURNING id'
-    values = [@type_id, @rental_cost, @available]
+    sql = 'INSERT INTO stock_items (type_id, rental_cost) VALUES ($1, $2) RETURNING id'
+    values = [@type_id, @rental_cost]
     @id = SqlRunner.run(sql, values).first['id'].to_i
   end
 
   # read
-  # ordered by availibility (available first)
   def self.all()
-    sql = 'SELECT * FROM stock_items
-            ORDER BY available DESC'
+    sql = 'SELECT * FROM stock_items'
     stock_item_hashes = SqlRunner.run(sql)
     return StockItem.map_hashes(stock_item_hashes)
   end
@@ -39,8 +30,8 @@ class StockItem
   # update
 
   def update()
-    sql = 'UPDATE stock_items SET (type_id, rental_cost, available) = ($1, $2, $3) WHERE id = $4'
-    values = [@type_id, @rental_cost, @available, @id]
+    sql = 'UPDATE stock_items SET (type_id, rental_cost) = ($1, $2) WHERE id = $3'
+    values = [@type_id, @rental_cost, @id]
     SqlRunner.run(sql, values)
   end
 
@@ -72,9 +63,9 @@ class StockItem
 
   def self.find_by_type(type)
     sql = 'SELECT stock_items.* FROM stock_items
-            INNER JOIN item_types
-            ON stock_items.type_id = item_types.id
-            WHERE item_types.name = $1'
+    INNER JOIN item_types
+    ON stock_items.type_id = item_types.id
+    WHERE item_types.name = $1'
     values = [type]
     stock_item_hashes = SqlRunner.run(sql, values)
     return StockItem.map_hashes(stock_item_hashes)
@@ -107,38 +98,45 @@ class StockItem
     return Lease.map_hashes(stock_item_hashes)
   end
 
-  # mark an item as unavailable
+  # return t/f if an item is available
+  # items are unavailable when they are leased and have not yet been returned
 
-  def mark_available()
-    @available = true
-    self.update()
+  def available()
+    sql = 'SELECT stock_items.* FROM stock_items
+    INNER JOIN leased_items
+    ON leased_items.stock_item_id = stock_items.id
+    INNER JOIN leases
+    ON leases.id = leased_items.lease_id
+    WHERE leases.returned = false'
+    all_unavailable_hashes = SqlRunner.run(sql)
+    all_unavailable = StockItem.map_hashes(all_unavailable_hashes)
+
+    unavailable_ids = all_unavailable.map {|item| item.id}
+    if unavailable_ids.include?(@id)
+      return false
+    else
+      return true
+    end
   end
 
-  # mark an item as available
-
-  def mark_unavailable()
-    @available = false
-    self.update()
-  end
 
 
-
-  #return all available items
+  # return all available items
   def self.available_items()
-    sql = "SELECT * FROM stock_items
-            WHERE available = TRUE"
-    items_hashes = SqlRunner.run(sql)
-    return StockItem.map_hashes(items_hashes)
+    items = self.all()
+    available_items = []
+    items.each {|item| available_items.push(item) if item.available}
+    return available_items
   end
 
 
-
-  # check if an item is available for rent (not on a lease)
-  def available?()
-    available_items = StockItem.available_items()
-    available_ids = available_items.map {|item| item.id}
-    return available_ids.include?(@id)
-  end
+  #
+  # # check if an item is available for rent (not on a lease)
+  # def available?()
+  #   available_items = StockItem.available_items()
+  #   available_ids = available_items.map {|item| item.id}
+  #   return available_ids.include?(@id)
+  # end
 
   # return the name of the item type
 

@@ -20,8 +20,7 @@ CREATE TABLE item_types (
 CREATE TABLE stock_items (
   id SERIAL4 PRIMARY KEY,
   type_id INT4 REFERENCES item_types(id) ON DELETE CASCADE,
-  rental_cost NUMERIC(5,2),
-  available BOOLEAN
+  rental_cost NUMERIC(5,2)
 );
 
 CREATE TABLE leases (
