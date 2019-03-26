@@ -1,3 +1,4 @@
+DROP TABLE IF EXISTS leased_items;
 DROP TABLE IF EXISTS leases;
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS stock_items;
@@ -29,7 +30,12 @@ CREATE TABLE leases (
   end_date DATE,
   duration INT2,
   customer_id INT4 REFERENCES customers(id) ON DELETE CASCADE,
-  stock_item_id INT4 REFERENCES stock_items(id) ON DELETE CASCADE,
   returned BOOLEAN,
   total_cost NUMERIC(5,2)
+);
+
+CREATE TABLE leased_items (
+  id SERIAL4 PRIMARY KEY,
+  lease_id INT4 REFERENCES leases(id) ON DELETE CASCADE,
+  stock_item_id INT4 REFERENCES stock_items(id) ON DELETE CASCADE
 );
