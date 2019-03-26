@@ -46,7 +46,6 @@
 <table>
   <tr>
     <th>Customer</th>
-    <th>Item Leased</th>
     <th>Start Date</th>
     <th>End Date</th>
   </tr>
@@ -55,7 +54,6 @@
   <% if lease.returned %>
   <tr>
     <td><%= lease.customer.first_name %> <%= lease.customer.last_name%></td>
-    <td><%= lease.stock_item.type.capitalize %></td>
     <td><%= lease.start_date %></td>
     <td><%= lease.end_date %></td>
     <td><form action="/leases/<%=lease.id%>" method="get">

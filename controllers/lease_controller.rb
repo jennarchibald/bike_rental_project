@@ -22,13 +22,11 @@ get '/leases/:id' do
   erb(:'lease/show')
 end
 
-# get '/leases/:id/edit' do
-#   @customers = Customer.all()
-#   @stock_items = StockItem.available_items()
-#   @lease = Lease.find_by_id(params[:id])
-#   @stock_items.push(StockItem.find_by_id(@lease.stock_item_id))
-#   erb(:'lease/edit')
-# end
+get '/leases/:id/edit' do
+  @customers = Customer.all()
+  @lease = Lease.find_by_id(params[:id])
+  erb(:'lease/edit')
+end
 
 
 post '/leases' do

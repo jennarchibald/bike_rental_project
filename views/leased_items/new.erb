@@ -1,10 +1,21 @@
+<table>
+  <tr>
+    <th>Customer Name</th>
+    <th>Lease Duration</th>
+  </tr>
+  <tr>
+    <td><%= @lease.customer.first_name%></td>
+    <td><%= @lease.duration%> Days</td>
+  </tr>
+</table>
+
 <% if @lease.stock_items.length > 0 %>
 <table>
   <% for item in @lease.stock_items %>
   <tr>
     <td><%= item.id %></td>
     <td>
-      <%= item.type %>
+      <%= item.type.capitalize %>
     </td>
     <td><form action="/leased-items/<%= @lease.id %>/delete" method="post">
       <input type="hidden" name="item_id" value="<%= item.id %>">
@@ -26,5 +37,5 @@
     <option value="<%= item.id %>"><%= item.id %> <%= item.type.capitalize %></option>
     <% end %>
   </select>
-  <input type="submit" name="add-item" value="Done">
+  <input type="submit" name="add-item" value="Add">
 </form>

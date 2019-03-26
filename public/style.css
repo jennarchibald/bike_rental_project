@@ -1,6 +1,7 @@
 
 body {
   background-color: #F0F2F2;
+  font-family: 'Work sans';
 }
 
 img {
@@ -35,6 +36,11 @@ nav {
 
 }
 
+a {
+  color: white;
+  text-decoration: none;
+}
+
 a:visited {
  color: lightcyan;
 }
@@ -55,11 +61,22 @@ li {
   margin-right: 30px;
 }
 
-table, form, h1, h2, h3, h4, p {
+table, h1, h2, h3, h4, p {
   display: flex;
   justify-content: center;
   margin-top: 20px;
   text-align: center;
+}
+
+form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+}
+
+.submit {
+
 }
 
 h4 {
@@ -70,10 +87,14 @@ h4 {
 td {
   padding: 5px;
   border-top: 1px solid silver;
-}
+ }
 
 label {
   margin  : 5px 10px;
+}
+
+input {
+  margin: 0px 10px;
 }
 
 .overdue {
