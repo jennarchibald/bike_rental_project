@@ -37,10 +37,6 @@ post '/customers' do
   redirect '/customers'
 end
 
-post '/customers/search' do
-  @customers = Customer.search_by_name(params['name'])
-  erb(:'customer/index')
-end
 
 post '/customers/:id' do
   customer = Customer.new(params)
