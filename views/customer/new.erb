@@ -7,12 +7,12 @@
 
 <form class="vertical-form" action="/customers" method="post">
   <label for="first-name">First Name</label>
-  <input type="text" name="first_name" id="first-name">
+  <input type="text" name="first_name" id="first-name" required>
   <label for="last-name">Last Name</label>
-  <input type="text" name="last_name" id="last-name">
+  <input type="text" name="last_name" id="last-name" required>
   <label for="contact-number">Contact Number</label>
-  <input type="tel" name="contact_number" id="contact-number">
+  <input type="tel" name="contact_number" id="contact-number" required>
   <label for="age">Age</label>
-  <input type="number" name="age" id="age" min="10">
+  <input type="number" name="age" id="age" min="10" required>
   <input type="submit" name="new-customer" value="Create Customer">
 </form>

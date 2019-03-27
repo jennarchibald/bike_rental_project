@@ -40,9 +40,10 @@
       </tr>
       <% else %>
       <tr>
-      <td colspan="3s">
-        <%= 'Items on Loan' %>
-      </td>
+      <th colspan="3s">
+        <%= 'Items on Loan' if @lease.stock_items.length >0%>
+        <%= 'No Items on Loan' if @lease.stock_items.length ==0%>
+      </th>
       </tr>
       <% for item in @lease.stock_items() %>
 
