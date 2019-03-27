@@ -99,6 +99,21 @@ class Lease
     self.update()
   end
 
+  # return the daily cost of a lease as a string
+
+  def daily_cost()
+    cost = @total_cost.to_f / @duration.to_f
+    return cost.to_s + "0"
+  end
+
+  # return the total fine for an overdue lease (daily cost * days overdue)
+  # as a string
+
+  def total_fine()
+    fine = daily_cost().to_f * days_overdue().to_f
+    return fine.to_s + "0"
+  end
+
   # return the customer who leased the item
 
   def customer()

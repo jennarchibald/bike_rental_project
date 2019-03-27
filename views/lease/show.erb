@@ -3,8 +3,10 @@
   <h4><a href="/leases/new">Start new Lease</a></h4>
 </div>
 
-
-<h3><%="This Lease is #{@lease.days_overdue} Days Overdue For Return" if @lease.overdue? %></h3>
+<% if @lease.overdue? %>
+<h3 class="overdue-heading">This Lease is <%=@lease.days_overdue%> Days Overdue For Return</h3>
+<h2>A fine of £<%= @lease.total_fine%> is due.</h2>
+<% end %>
 <table>
   <tr>
     <th>Customer Name</th>
