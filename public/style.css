@@ -10,19 +10,8 @@ img {
   margin-right: auto;
   width: 50%;
   display:flex;
-  /* animation-duration: 5s;
-  animation-name: slidein; */
-}
-/* @keyframes slidein {
-  from {
-    margin-left: auto;
-    margin-right: auto;
-  }
 
-  to {
-    margin-left: 100%;
-  }
-} */
+}
 
 nav {
   background-color: #FFD723;
@@ -61,6 +50,7 @@ li {
   margin-right: 2em;
 }
 
+
 h1 {
   color: #FB7959;
   text-shadow: 2px 2px #53575B;
@@ -71,6 +61,10 @@ table, h1, h2, h3, h4, p {
   justify-content: center;
   margin-top: 1em;
   text-align: center;
+}
+
+h1 {
+  font-size: 2.5em;
 }
 
 form {
