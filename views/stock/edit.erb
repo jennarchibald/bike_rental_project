@@ -8,7 +8,7 @@
   <label for="type">Item type</label>
   <select name="type_id">
     <% for type in @types %>
-    <option value="<%= type.id%>"><%= type.name.capitalize %></option>
+    <option value="<%= type.id%>" <%= 'selected' if type.id == @stock_item.type_id %>><%= type.name.capitalize %></option>
     <% end %>
   </select>
   <label for="rental-cost">Rental Cost</label>
