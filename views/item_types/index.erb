@@ -1,19 +1,19 @@
 
 <div class="sidebar">
-  <h4><a href="/stock">All Stock</a></h4>
   <h4><a href="/item-types/new">Add New Stock Type</a></h4>
+  <h4><a href="/stock">All Stock</a></h4>
   <h4><a href="/item-types">Back to Top</a></h4>
 </div>
 
 <table>
+  <tr>
+    <th colspan="2">Stock Types</th>
+  </tr>
   <% for type in @types %>
   <tr>
     <td><%= type.name.capitalize%></td>
-    <td><form action="/item-types/<%= type.id %>/edit" method="get">
-      <input type="submit" name="item-types-edit" value="Edit type">
-    </form></td>
-    <td><form action="/item-types/<%= type.id %>/delete" method="get">
-      <input type="submit" name="item-types-delete" value="Delete this type">
+    <td><form action="/item-types/<%= type.id %>" method="get">
+      <input type="submit" name="item-types-details" value="More Details">
     </form></td>
   </tr>
   <% end %>

@@ -1,7 +1,7 @@
 <div class="sidebar">
-  <h4><a href="/stock">All Stock</a></h4>
   <h4><a href="/item-types">All Stock Types</a></h4>
   <h4><a href="/item-types/new">Add New Stock Type</a></h4>
+  <h4><a href="/stock">All Stock</a></h4>
 </div>
 
 <h3>Are you sure you wish to delete this item type?</h3>
@@ -32,7 +32,7 @@
     <td><%= item.id%></td>
     <td><%= item.type.capitalize %></td>
     <td><%= item.rental_cost %></td>
-    <td><%= item.available ? 'yes': 'no' %></td>
+    <td><%= item.available ? '&#10004;': '&#x2717;' %></td>
     <td><form action="/stock/<%=item.id%>" method="get">
       <input type="submit" name="stock-details" value="More Details">
     </form></td>

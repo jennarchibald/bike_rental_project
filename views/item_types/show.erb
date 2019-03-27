@@ -1,0 +1,41 @@
+<div class="sidebar">
+  <h4><a href="/item-types">All Stock types</a></h4>
+  <h4><a href="/item-types/new">Add New Stock Type</a></h4>
+  <h4><a href="/stock">All Stock</a></h4>
+</div>
+
+<table>
+  <tr>
+    <th>Stock Type</th>
+    <td><%= @type.name.capitalize%></td>
+    </tr>
+    <tr>
+    <td><form action="/item-types/<%= @type.id %>/edit" method="get">
+      <input type="submit" name="item-types-edit" value="Edit type">
+    </form></td>
+    <td><form action="/item-types/<%= @type.id %>/delete" method="get">
+      <input type="submit" name="item-types-delete" value="Delete this type">
+    </form></td>
+  </tr>
+</table>
+
+<% if @type.all_items.length >0 %>
+<table>
+  <tr>
+    <th>ID</th>
+    <th>Rental Cost</th>
+    <th>Available</th>
+  </tr>
+  <% for item in @type.all_items() %>
+  <tr>
+    <td><%= item.id%></td>
+    <td><%= item.rental_cost %></td>
+    <td><%= item.available ? '&#10004;': '&#x2717;' %></td>
+    <td><form action="/stock/<%=item.id%>" method="get">
+      <input type="submit" name="stock-details" value="More Details">
+    </form></td>
+  </tr>
+  <% end %>
+</table>
+
+<% end %>

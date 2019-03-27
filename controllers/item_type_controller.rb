@@ -14,6 +14,11 @@ get '/item-types/new' do
   erb(:'item_types/new')
 end
 
+get '/item-types/:id' do
+  @type = ItemType.find_by_id(params[:id])
+  erb(:'item_types/show')
+end
+
 get '/item-types/:id/delete' do
   @type = ItemType.find_by_id(params[:id])
   erb(:'item_types/delete')
