@@ -65,12 +65,6 @@ class Lease
     values = [@start_date, @duration, @end_date, @customer_id, @returned, @total_cost, @id]
     SqlRunner.run(sql, values)
 
-
-    # if @returned == true
-    #   # binding.pry()
-    #   item = StockItem.find_by_id(@stock_item_id)
-    #   item.mark_available
-    # end
   end
 
   # delete
@@ -143,16 +137,6 @@ class Lease
     return days_difference * -1
   end
 
-  # mark a lease as returned
-
-  # NOT USED ? - USED IN SEED FILE
-  # def mark_as_returned()
-  #   @returned = true
-  #   self.update()
-  #
-  #   item = StockItem.find_by_id(@stock_item_id)
-  #   item.mark_available()
-  # end
 
   # find all leases of a certain status - active, past, returned
 
