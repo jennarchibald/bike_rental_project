@@ -61,27 +61,38 @@ class Customer
   # search for a customer by name
 
   def self.search_by_name(name)
-    string_array = name.split(' ')
+    string_array = name.downcase.split(' ')
     customers = []
     for string in string_array
 
-    sql = "SELECT * FROM customers
-            WHERE LOWER(first_name) LIKE $1
-            OR LOWER(last_name) LIKE $1"
-    values = ["%" + string.downcase + "%"]
-    customers_hashes = SqlRunner.run(sql, values)
-    customers << customers_hashes.map {|hash| Customer.new(hash)}
+      sql = "SELECT * FROM customers
+      WHERE LOWER(first_name) LIKE $1
+      OR LOWER(last_name) LIKE $1"
+      values = ["%" + string + "%"]
+      customers_hashes = SqlRunner.run(sql, values)
+      customers << customers_hashes.map {|hash| Customer.new(hash)}
     end
     customers = customers.flatten.uniq {|customer| customer.id}
+
+    result = []
+
+    customers.each do |customer|
+      if string_array.include?(customer.first_name.downcase) && string_array.include?(customer.last_name.downcase)
+        result << customer
+      end
+    end
+
+    return customers if result.empty?
+    return result
   end
 
 
   # find all the current leases (not returned)
   def current_leases()
     sql = 'SELECT * FROM leases
-            WHERE customer_id = $1
-            AND returned = FALSE
-            ORDER BY end_date ASC'
+    WHERE customer_id = $1
+    AND returned = FALSE
+    ORDER BY end_date ASC'
     values = [@id]
     stock_item_hashes = SqlRunner.run(sql, values)
     return Lease.map_hashes(stock_item_hashes)
@@ -90,9 +101,9 @@ class Customer
   # find all the past leases (returned)
   def past_leases()
     sql = 'SELECT * FROM leases
-            WHERE customer_id = $1
-            AND returned = TRUE
-            ORDER BY end_date DESC'
+    WHERE customer_id = $1
+    AND returned = TRUE
+    ORDER BY end_date DESC'
     values = [@id]
     stock_item_hashes = SqlRunner.run(sql, values)
     return Lease.map_hashes(stock_item_hashes)
