@@ -135,15 +135,6 @@ class StockItem
     return available_items
   end
 
-
-  #
-  # # check if an item is available for rent (not on a lease)
-  # def available?()
-  #   available_items = StockItem.available_items()
-  #   available_ids = available_items.map {|item| item.id}
-  #   return available_ids.include?(@id)
-  # end
-
   # return the name of the item type
 
   def type()
