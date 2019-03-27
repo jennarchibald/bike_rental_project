@@ -58,7 +58,8 @@ class StockItem
     sql = 'SELECT * FROM stock_items WHERE id = $1'
     values = [id]
     stock_item_hash = SqlRunner.run(sql, values).first
-    return StockItem.new(stock_item_hash)
+    return StockItem.new(stock_item_hash) if stock_item_hash
+    return stock_item_hash
   end
 
   # find all stock items of a particular type

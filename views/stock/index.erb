@@ -5,6 +5,10 @@
 </div>
 
 <form action="/stock" method="get">
+  <input type="number" name="id" min="1">
+  <input type="submit" name="find_by_id" value="Search for ID">
+</form>
+<form action="/stock" method="get">
   <select name="type">
     <option value="all">All Items</option>
     <% for type in @item_types%>
@@ -14,6 +18,8 @@
   <input type="submit" value="Filter Items">
 
 </form>
+
+<% if @stock_items.first != nil %>
 <table>
   <tr>
     <th>ID</th>
@@ -34,3 +40,4 @@
 
   <% end %>
 </table>
+<% end %>
