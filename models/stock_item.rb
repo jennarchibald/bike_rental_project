@@ -25,8 +25,8 @@ class StockItem
     sql = 'SELECT * FROM stock_items'
     stock_item_hashes = SqlRunner.run(sql)
     items = StockItem.map_hashes(stock_item_hashes)
-    items.sort_by {|item| item.available.to_s}
-    return items.reverse
+    sorted_items = items.sort_by {|item| item.available.to_s}
+    return sorted_items.reverse
   end
 
   # update
@@ -72,8 +72,8 @@ class StockItem
     values = [type]
     stock_item_hashes = SqlRunner.run(sql, values)
     items =  StockItem.map_hashes(stock_item_hashes)
-    items.sort_by {|item| item.available.to_s}
-    return items.reverse
+    sorted_items= items.sort_by {|item| item.available.to_s}
+    return sorted_items.reverse
 
   end
 
