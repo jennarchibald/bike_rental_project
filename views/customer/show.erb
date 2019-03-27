@@ -26,30 +26,37 @@
   </tr>
 </table>
 
+<% if @customer.current_leases.length > 0 %>
 <h3>Current Rentals</h3>
-
+<% end %>
 <table>
   <% for lease in @customer.current_leases %>
-    <tr>
-      <td><%= lease.start_date %></td>
-      <td><%= lease.end_date %></td>
-      <td><form action="/leases/<%=lease.id%>" method="get">
-        <input type="submit" name="more-lease-details" value="More Details">
-      </form></td>
-    </tr>
+  <tr>
+    <td><%= lease.start_date %></td>
+    <td><%= lease.end_date %></td>
+    <td><form action="/leases/<%=lease.id%>" method="get">
+      <input type="submit" name="more-lease-details" value="More Details">
+    </form></td>
+  </tr>
   <% end %>
 </table>
 
+<% if @customer.past_leases.length >0 %>
 <h3>Past Rentals</h3>
+<% end %>
 
 <table>
   <% for lease in @customer.past_leases %>
-    <tr>
-      <td><%= lease.start_date %></td>
-      <td><%= lease.end_date %></td>
-      <td><form action="/leases/<%=lease.id%>" method="get">
-        <input type="submit" name="more-lease-details" value="More Details">
-      </form></td>
-    </tr>
+  <tr>
+    <td><%= lease.start_date %></td>
+    <td><%= lease.end_date %></td>
+    <td><form action="/leases/<%=lease.id%>" method="get">
+      <input type="submit" name="more-lease-details" value="More Details">
+    </form></td>
+  </tr>
   <% end %>
 </table>
+
+<% if @customer.past_leases.length == 0 &&  @customer.current_leases.length == 0%>
+<h3>No Rental History</h3>
+<% end %>
