@@ -19,7 +19,7 @@
   </tr>
   <tr>
     <th>Available</th>
-    <td><%= @stock_item.available ? 'yes': 'no'%></td>
+    <td><%= @stock_item.available ? 'Yes': 'No'%></td>
   </tr>
   <tr>
     <td><form action="/stock/<%=@stock_item.id%>/edit" method="get">
@@ -31,8 +31,9 @@
   </tr>
 </table>
 
+<% if @stock_item.current_leases.length >0 %>
 <h3>Current Rental</h3>
-
+<% end %>
 <table>
   <% for lease in @stock_item.current_leases %>
   <tr>
@@ -46,8 +47,9 @@
   <% end %>
 </table>
 
+<% if @stock_item.past_leases.length >0 %>
 <h3>Past Rentals</h3>
-
+<% end %>
 <table>
   <% for lease in @stock_item.past_leases %>
   <tr>
@@ -60,3 +62,7 @@
   </tr>
   <% end %>
 </table>
+
+<% if @stock_item.past_leases.length == 0  && @stock_item.current_leases.length ==0 %>
+<h3>This item has no rental history</h3>
+<% end %>
