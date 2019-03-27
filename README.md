@@ -14,3 +14,10 @@ It is built using PostgreSQL, ruby, and sinatra.
 -Allows for creation and editing of leases.
 
 -Allows for filtering of leases by status (active, returned and overdue).
+
+
+[Version 1.1](https://github.com/jennarchibald/bike_rental_project/tree/fc9a59ac7c91c72435694fd4318faf83f912a784)
+
+- Allows for multiple items to be added to each lease.
+
+- Improved CSS styling and layout

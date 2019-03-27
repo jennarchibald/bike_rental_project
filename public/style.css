@@ -15,7 +15,7 @@ img {
 
 nav {
   background-color: #FFD723;
-  /* padding: 10px; */
+  height: 15%;
   width: 100%;
   position: fixed;
   top: 0;
@@ -28,6 +28,10 @@ nav {
 a {
   color: #53575B;
   text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
 }
 
 .sidebar a {
@@ -96,13 +100,13 @@ h4 {
 td, th {
   padding: 0.4em;
   border-top: 1px solid silver;
- }
+}
 
 th {
   margin-bottom: 1em;
   padding: 1em;
   text-decoration: underline;
- }
+}
 
 label {
   margin  : 0.4em 0.6em;
@@ -128,17 +132,14 @@ input::placeholder {
 .sidebar {
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: center ;
   height: 100%;
   position: fixed;
   z-index: 1;
   top: 0;
   left: 0;
   margin-top: 2em;
-  /* padding-top: 30px; */
-  /* padding-left: 10px;
-  padding-right: 10px; */
-  width: 10em;
+  width: 15%;
   background-color: #7D8A92;
   border-right: 2px solid black;
   text-align: center;
@@ -152,4 +153,8 @@ input::placeholder {
 .namesearch {
   width: 150px;
   text-align: center;
+}
+
+br {
+  border-bottom:  1px solid silver;
 }
