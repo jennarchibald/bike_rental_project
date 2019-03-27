@@ -7,6 +7,7 @@ also_reload('../models/*')
 
 get '/leases' do
   @leases = Lease.all_ordered_by_end_date()
+  @leases = Lease.find_by_status(params['filter']) if params['filter'] && params['filter'] != 'all'
   erb(:"lease/index")
 end
 
@@ -18,14 +19,8 @@ get '/leases/new' do
   erb(:'lease/new')
 end
 
-get 'leases/customer/:id/new' do
-  @customer = Customer.find_by_id(params[:id])
-  erb(:'lease/new')
-end
-
 get '/leases/:id' do
   @lease = Lease.find_by_id(params[:id])
-  # binding.pry()
   erb(:'lease/show')
 end
 
@@ -43,11 +38,6 @@ post '/leases' do
   erb(:'leased_items/new')
 end
 
-post '/leases/filter' do
-  redirect '/leases' if params['filter'] == 'all'
-  @leases = Lease.find_by_status(params['filter'])
-  erb(:'lease/index')
-end
 
 
 post '/leases/:id' do
