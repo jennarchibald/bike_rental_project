@@ -1,6 +1,6 @@
 <div class="sidebar">
+  <h4><a href="/customers">All Customers</a></h4>
   <h4><a href="/customers/new">Add a new customer</a></h4>
-  <h4><a href="/customers">Back to Top</a></h4>
 </div>
 
 <h3>Are you sure you wish to delete this customer?</h3>
@@ -21,16 +21,17 @@
   </tr>
 </table>
 
-<p>Deleting this customer will also delete the following lease records!!!</p>
+<p>Deleting this customer will also delete all their lease records!!!</p>
 
+<% if @customer.current_leases.length > 0 %>
 <h3>Current Rentals</h3>
+<% end %>
 
 <table>
   <% for lease in @customer.current_leases %>
     <tr>
       <td><%= lease.start_date %></td>
-      <td><%= lease.end_date %></t
-        d>
+      <td><%= lease.end_date %></td>
       <td><form action="/leases/<%=lease.id%>" method="get">
         <input type="submit" name="more-lease-details" value="More Details">
       </form></td>
@@ -38,7 +39,9 @@
   <% end %>
 </table>
 
+<% if @customer.past_leases.length >0 %>
 <h3>Past Rentals</h3>
+<% end %>
 
 <table>
   <% for lease in @customer.past_leases %>
