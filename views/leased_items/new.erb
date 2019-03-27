@@ -1,3 +1,7 @@
+<div class="sidebar">
+  <h4><a href="/leases/<%= @lease.id %>">Back to Lease</a></h4>
+</div>
+
 <table>
   <tr>
     <th>Customer Name</th>
@@ -31,7 +35,7 @@
 
 
 <form action="/leases/<%= @lease.id %>" method="get">
-  <input type="submit" name="return" value="Finish Lease">
+  <input class="big-button" type="submit" name="return" value="Finish Lease">
 </form>
 
 <p>
