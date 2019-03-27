@@ -12,7 +12,14 @@ end
 
 get '/leases/new' do
   @customers = Customer.all()
+  @customer_id = params['customer_id'].to_i
+  p params
   @stock_items = StockItem.available_items()
+  erb(:'lease/new')
+end
+
+get 'leases/customer/:id/new' do
+  @customer = Customer.find_by_id(params[:id])
   erb(:'lease/new')
 end
 
@@ -41,6 +48,7 @@ post '/leases/filter' do
   @leases = Lease.find_by_status(params['filter'])
   erb(:'lease/index')
 end
+
 
 post '/leases/:id' do
   lease = Lease.new(params)

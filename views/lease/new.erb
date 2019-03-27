@@ -9,7 +9,7 @@
   <label for="customer">Customer Name</label>
   <select name="customer_id" id="customer">
     <% for customer in @customers %>
-    <option value="<%= customer.id%>"><%= customer.first_name%> <%= customer.last_name%></option>
+    <option <%= 'selected' if @customer_id == customer.id %> value="<%= customer.id%>"><%= customer.first_name%> <%= customer.last_name%></option>
     <%end%>
   </select>
 
