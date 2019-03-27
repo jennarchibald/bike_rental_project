@@ -4,7 +4,7 @@
   <h4><a href="/stock">Back to Top</a></h4>
 </div>
 
-<form action="/stock/filter" method="post">
+<form action="/stock" method="get">
   <select name="type">
     <option value="all">All Items</option>
     <% for type in @item_types%>

@@ -8,6 +8,7 @@ also_reload('../models/*')
 
 get '/stock' do
   @stock_items = StockItem.all()
+  @stock_items = StockItem.find_by_type(params['type']) if params['type'] && params['type'] != 'all'
   @item_types = ItemType.all()
   erb(:"stock/index")
 end
@@ -40,12 +41,6 @@ post '/stock' do
   redirect '/stock'
 end
 
-post '/stock/filter' do
-  redirect '/stock' if params['type'] == 'all'
-  @stock_items = StockItem.find_by_type(params['type'])
-  @item_types = ItemType.all()
-  erb(:'stock/index')
-end
 
 post '/stock/:id' do
   item = StockItem.new(params)
