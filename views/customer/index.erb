@@ -4,7 +4,7 @@
   <h4><a href="/customers">Back to Top</a></h4>
 </div>
 
-<form action="/customers/search" method="post">
+<form action="/customers" method="get">
   <input class = "namesearch" type="text" name="name" id='name' >
   <input type="submit" name="search" value="Search for customer">
 </form>
@@ -23,3 +23,6 @@
 
   <% end %>
 </table>
+<p>
+<%= "No matches found" if @customers.length == 0 %>
+</p>

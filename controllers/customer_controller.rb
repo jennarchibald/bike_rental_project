@@ -6,6 +6,7 @@ also_reload('../models/*')
 
 get '/customers' do
   @customers = Customer.all()
+  @customers = Customer.search_by_name(params['name']) if params['name']
   erb(:'customer/index')
 end
 
