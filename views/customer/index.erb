@@ -15,8 +15,9 @@
     <td><form action="/customers/<%=customer.id%>" method="get">
       <input type="submit" name="show" value="More Details">
     </form></td>
-    <td><form action="/leases" method="post">
-
+    <td><form action="/leases/new" method="get">
+      <input type="hidden" name="customer_id" value="<%= customer.id %>">
+      <input type="submit" name="create-lease" value="New Lease">
     </form></td>
   </tr>
 
