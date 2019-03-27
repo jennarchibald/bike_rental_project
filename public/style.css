@@ -162,3 +162,29 @@ br {
 .overdue-heading {
   text-decoration: underline;
 }
+
+input.reveal {
+  display:none;
+}
+
+input[type=checkbox] ~ form {
+  display:none;
+}
+
+input[type=checkbox]:checked ~ form {
+  display:flex;
+}
+
+label.reveal {
+  background-color: #7D8A92;
+  color: white;
+  padding: 9px 10px;
+  border: 1px solid silver;
+}
+
+.center {
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
