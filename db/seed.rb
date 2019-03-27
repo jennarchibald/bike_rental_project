@@ -56,6 +56,15 @@ customer5 = Customer.new({
 
 customer5.save()
 
+customer6 = Customer.new({
+  'first_name' => 'Becky',
+  'last_name' => 'Nielson',
+  'contact_number' => '97665432123',
+  'age' => '29'
+  })
+
+customer6.save()
+
 #  ITEM TYPES
 
 type1 = ItemType.new({
@@ -75,6 +84,18 @@ type3 = ItemType.new({
   })
 
 type3.save()
+
+type4 = ItemType.new({
+  'name' => 'raincoat'
+  })
+
+type4.save()
+
+type5 = ItemType.new({
+  'name' => 'map'
+  })
+
+type5.save()
 
 
 
@@ -136,8 +157,35 @@ item8 = StockItem.new({
 
 item8.save()
 
+item9 = StockItem.new({
+  'type_id' => type4.id,
+  'rental_cost' => '4.50'
+  })
 
-# LEASES
+item9.save()
+
+item10 = StockItem.new({
+  'type_id' => type4.id,
+  'rental_cost' => '4.50'
+  })
+
+item10.save()
+
+item11 = StockItem.new({
+  'type_id' => type5.id,
+  'rental_cost' => '1.50'
+  })
+
+item11.save()
+item12 = StockItem.new({
+  'type_id' => type5.id,
+  'rental_cost' => '1.50'
+  })
+
+item12.save()
+
+
+# LEASES and leased items
 
 lease1 = Lease.new({
   'duration' => '7',
@@ -197,24 +245,38 @@ leased_item5 = LeasedItem.new({
   })
 leased_item5.save()
 
-# lease4 = Lease.new({
-#   'start_date' => '2019-03-14',
-#   'duration' => '7',
-#   'customer_id' => customer2.id,
-#   'stock_item_id' => item5.id
-#   })
-#
-# lease4.save()
-#
-# lease5 = Lease.new({
-#   'start_date' => '2019-03-14',
-#   'duration' => '7',
-#   'customer_id' => customer3.id,
-#   'stock_item_id' => item7.id
-#   })
-#
-# lease5.save()
-#
+lease4 = Lease.new({
+  'start_date' => '2019-03-14',
+  'duration' => '4',
+  'customer_id' => customer3.id,
+  })
+
+lease4.save()
+
+leased_item6 = LeasedItem.new({
+  'stock_item_id' => item6.id,
+  'lease_id' => lease4.id
+  })
+
+leased_item6.save()
+leased_item6 = LeasedItem.new({
+  'stock_item_id' => item7.id,
+  'lease_id' => lease4.id
+  })
+
+leased_item6.save()
+
+lease5 = Lease.new({
+  'start_date' => '2019-01-14',
+  'duration' => '7',
+  'customer_id' => customer3.id,
+  'stock_item_id' => item7.id
+  })
+
+lease5.save()
+lease5.returned = true
+lease5.update()
+
 # lease6 = Lease.new({
 #   'duration' => '7',
 #   'customer_id' => customer5.id,
