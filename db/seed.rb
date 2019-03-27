@@ -266,26 +266,6 @@ leased_item6 = LeasedItem.new({
 
 leased_item6.save()
 
-lease5 = Lease.new({
-  'start_date' => '2019-01-14',
-  'duration' => '7',
-  'customer_id' => customer3.id,
-  'stock_item_id' => item7.id
-  })
-
-lease5.save()
-lease5.returned = true
-lease5.update()
-
-# lease6 = Lease.new({
-#   'duration' => '7',
-#   'customer_id' => customer5.id,
-#   'stock_item_id' => item8.id
-#   })
-#
-# lease6.save()
-
-
 
 
 binding.pry()

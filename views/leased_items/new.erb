@@ -1,4 +1,5 @@
 <div class="sidebar">
+  <h4><a href="/leases">All Leases</a></h4>
   <h4><a href="/leases/<%= @lease.id %>">Back to Lease</a></h4>
 </div>
 
@@ -35,7 +36,7 @@
 
 
 <form action="/leases/<%= @lease.id %>" method="get">
-  <input class="big-button" type="submit" name="return" value="Finish Lease">
+  <input class="big-button" type="submit" name="return" value="Save Lease">
 </form>
 
 <p>
@@ -45,7 +46,7 @@
 
 <form action="/leased-items/<%= @lease.id %>" method="post">
   <input type="hidden" name="lease_id" value="<%= @lease.id %>">
-  <label for="stock_item_id">Add Item to Lease</label>
+  <label for="stock_item_id">Select Item</label>
   <select name="stock_item_id">
     <% for item in @items %>
     <option value="<%= item.id %>"><%= item.id %> <%= item.type.capitalize %></option>
