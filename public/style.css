@@ -88,6 +88,11 @@ form {
   margin-top: 10px;
 }
 
+.split-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+}
 
 h4 {
   font-size: 1em;
