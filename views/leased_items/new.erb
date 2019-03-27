@@ -29,6 +29,16 @@
 </table>
 <% end %>
 
+
+<form action="/leases/<%= @lease.id %>" method="get">
+  <input type="submit" name="return" value="Finish Lease">
+</form>
+
+<p>
+  <%= 'No Items are available' if @items.length == 0 %>
+</p>
+<% if @items.length > 0 %>
+
 <form action="/leased-items/<%= @lease.id %>" method="post">
   <input type="hidden" name="lease_id" value="<%= @lease.id %>">
   <label for="stock_item_id">Add Item to Lease</label>
@@ -39,3 +49,5 @@
   </select>
   <input type="submit" name="add-item" value="Add">
 </form>
+
+<% end %>
