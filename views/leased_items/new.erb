@@ -4,7 +4,7 @@
     <th>Lease Duration</th>
   </tr>
   <tr>
-    <td><%= @lease.customer.first_name%></td>
+    <td><%= @lease.customer.first_name%> <%= @lease.customer.last_name%></td>
     <td><%= @lease.duration%> Days</td>
   </tr>
 </table>
@@ -20,7 +20,7 @@
     <td><form action="/leased-items/<%= @lease.id %>/delete" method="post">
       <input type="hidden" name="item_id" value="<%= item.id %>">
       <input type="hidden" name="lease_id" value="<%= @lease.id %>">
-      <input type="submit" name="delete-from-lease" value="Remove from Lease">
+      <input type="submit" name="delete-from-lease" value="Delete from Lease">
     </form></td>
   </tr>
 

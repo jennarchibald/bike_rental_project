@@ -4,7 +4,7 @@
 </div>
 
 
-<h3><%="This Lease is Overdue For Return" if @lease.overdue? %></h3>
+<h3><%="This Lease is #{@lease.days_overdue} Days Overdue For Return" if @lease.overdue? %></h3>
 <table>
   <tr>
     <th>Customer Name</th>

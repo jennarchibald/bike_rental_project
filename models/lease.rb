@@ -135,6 +135,14 @@ class Lease
     return check_date < 0
   end
 
+  # calculate the days overdue a lease is
+
+  def days_overdue
+    difference = @end_date - Date::today
+    days_difference = difference.to_i
+    return days_difference * -1
+  end
+
   # mark a lease as returned
 
   # NOT USED ? - USED IN SEED FILE
