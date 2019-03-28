@@ -40,5 +40,5 @@ end
 post '/leases/:id' do
   @lease = Lease.new(params)
   @lease.calculate_total_cost()
-  redirect "/leased-items/#{@lease.id}"
+  redirect "/leases/#{@lease.id}"
 end

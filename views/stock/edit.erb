@@ -12,7 +12,7 @@
     <% end %>
   </select>
   <label for="rental-cost">Rental Cost</label>
-  <input type="number" name="rental_cost" id="rental-cost" step="0.01" value="<%=@stock_item.rental_cost%>" min="0.01">
+  <input type="number" name="rental_cost" id="rental-cost" step="0.01" value="<%=@stock_item.rental_cost%>" min="0.01" required>
   <input type="hidden" name="available" value="<%= @stock_item.available%>">
   <input type="submit" name="edit-stock-item" value="Save Changes">
 </form>

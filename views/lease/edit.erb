@@ -14,7 +14,7 @@
     <%end%>
   </select>
     <label for="duration">Duration (days)</label>
-    <input type="number" name="duration" value="<%= @lease.duration%>" min="1">
+    <input type="number" name="duration" value="<%= @lease.duration%>" min="1" required>
     <input type="hidden" name="start_date" value="<%=@lease.start_date%>">
     <input type="hidden" name="total_cost" value="<%=@lease.total_cost%>">
 

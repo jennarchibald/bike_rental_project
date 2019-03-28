@@ -6,6 +6,6 @@
 
 <form class="vertical-form" action="/item-types/<%= @type.id %>" method="post">
   <label for="item-name">Type Name</label>
-  <input type="text" name="name" id = "item-name" value= "<%= @type.name%>">
+  <input type="text" name="name" id = "item-name" value= "<%= @type.name%>" required>
   <input type="submit" name="Submit" value="Submit Changes">
 </form>

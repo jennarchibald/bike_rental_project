@@ -5,12 +5,12 @@
 
 <form class= "vertical-form" action="/customers/<%=@customer.id%>" method="post">
   <label for="first-name">First Name</label>
-  <input type="text" name="first_name" id="first-name" value = "<%= @customer.first_name%>">
+  <input type="text" name="first_name" id="first-name" value = "<%= @customer.first_name%>" required>
   <label for="last-name">Last Name</label>
-  <input type="text" name="last_name" id="last-name" value = "<%= @customer.last_name%>">
+  <input type="text" name="last_name" id="last-name" value = "<%= @customer.last_name%>" required>
   <label for="contact-number">Contact Number</label>
-  <input type="tel" name="contact_number" id="contact-number" value="<%= @customer.contact_number%>">
+  <input type="tel" name="contact_number" id="contact-number" value="<%= @customer.contact_number%>" required>
   <label for="age">Age</label>
-  <input type="number" name="age" id="age" value="<%=@customer.age%>" min ="10">
+  <input type="number" name="age" id="age" value="<%=@customer.age%>" min ="10" required>
   <input type="submit" name="edit-customer" value="Save Changes">
 </form>
