@@ -44,9 +44,9 @@ end
 
 
 post '/stock/:id' do
-  @stock_item = StockItem.new(params)
-  @stock_item.update()
-  redirect "/stock/#{@stock_item.id}"
+  stock_item = StockItem.new(params)
+  stock_item.update()
+  redirect "/stock/#{stock_item.id}"
 end
 
 post '/stock/:id/delete' do

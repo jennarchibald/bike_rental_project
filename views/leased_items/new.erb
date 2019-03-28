@@ -54,10 +54,13 @@
   <input type="hidden" name="lease_id" value="<%= @lease.id %>">
   <label for="stock_item_id">Select Item</label>
   <select name="stock_item_id">
+    <option value=""></option>
     <% for item in @items %>
     <option value="<%= item.id %>"><%= item.id %> <%= item.type.capitalize %></option>
     <% end %>
   </select>
+  <label for="stock_id">OR Add by ID</label>
+  <input type="number" name="stock_id" value="" min="1">
   <input type="submit" name="add-item" value="Add">
 </form>
 

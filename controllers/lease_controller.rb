@@ -34,7 +34,6 @@ end
 post '/leases' do
   @lease = Lease.new(params)
   @lease.save()
-  @items = StockItem.available_items()
   redirect "/leased-items/#{@lease.id}"
 end
 

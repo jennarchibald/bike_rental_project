@@ -16,16 +16,18 @@ end
 
 post '/leased-items/:lease_id/delete' do
   LeasedItem.delete_item_from_lease(params['item_id'], params['lease_id'])
-  # binding.pry()
-  @lease = Lease.find_by_id(params[:lease_id])
-  @items = StockItem.available_items()
-  redirect "/leased-items/#{@lease.id}"
+  redirect "/leased-items/#{params['lease_id']}"
 end
 
 post '/leased-items/:lease_id' do
-  leaseditem = LeasedItem.new(params)
-  leaseditem.save()
-  @items = StockItem.available_items()
-  @lease = Lease.find_by_id(params[:lease_id])
-  redirect "/leased-items/#{@lease.id}"
+  leaseditem = LeasedItem.new(params) if params['stock_item_id'] != ""
+
+  if params['stock_id'] != ""
+    item = StockItem.find_by_id(params['stock_id'])
+    params['stock_item_id'] = params['stock_id']
+    leaseditem = LeasedItem.new(params) if item.available
+  end
+
+  leaseditem.save() if leaseditem
+  redirect "/leased-items/#{params['lease_id']}"
 end
