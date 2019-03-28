@@ -1,7 +1,3 @@
-<div class="sidebar">
-  <h4><a href="/leases">All Leases</a></h4>
-  <h4><a href="/leases/new">Start new Lease</a></h4>
-</div>
 
 <% if @lease.overdue? %>
 <h3 class="overdue-heading">This Lease is <%=@lease.days_overdue%> Days Overdue For Return</h3>
