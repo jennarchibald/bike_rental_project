@@ -93,9 +93,12 @@ class Lease
 
   def calculate_total_cost()
     items = self.stock_items()
-    return 0 if items.length == 0
-    daily_cost = items.reduce(0) {|sum, item| sum += item.rental_cost.to_f}
-    @total_cost = @duration * daily_cost
+    if items.length == 0
+      @total_cost = 0
+    else
+      daily_cost = items.reduce(0) {|sum, item| sum += item.rental_cost.to_f}
+      @total_cost = @duration * daily_cost
+    end
     self.update()
   end
 

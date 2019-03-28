@@ -1,4 +1,7 @@
+require("pry")
+
 require_relative('../db/sql_runner')
+require_relative('./lease')
 
 
 class LeasedItem
@@ -69,6 +72,10 @@ class LeasedItem
     sql = "DELETE FROM leased_items WHERE stock_item_id = $1 AND lease_id = $2"
     values = [item_id, lease_id]
     SqlRunner.run(sql, values)
+
+    lease = Lease.find_by_id(lease_id)
+    lease.calculate_total_cost()
+
   end
 
 

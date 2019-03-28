@@ -7,7 +7,10 @@
 
 <table>
   <tr>
-    <th colspan="2">Stock Types</th>
+    <th>Stock Types</th>
+    <td><form action="/item-types/new" method="get">
+      <input type="submit" name="new-item-type" value="Add New Type">
+    </form></td>
   </tr>
   <% for type in @types %>
   <tr>

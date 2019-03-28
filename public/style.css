@@ -23,6 +23,10 @@ nav {
   z-index: 2;
   border-bottom: 2px solid black;
   color: white;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  padding-bottom: 0;
 }
 
 a {
@@ -33,6 +37,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
+
 
 .sidebar a {
   color: white;
@@ -47,14 +52,42 @@ ul {
   flex-direction: row;
   justify-content: center;
   list-style: none;
+  margin-bottom: 0px;
+
 }
 
 li {
+  display:flex;
+  flex-direction: column;
   margin-left: 2em;
   margin-right: 2em;
 }
 
+li:hover {
+  cursor: pointer;
+}
 
+ul li ul {
+  opacity: 0;
+  transition: all 0.5s ease;
+  left: 0;
+  visibility: hidden;
+  display:none;
+}
+
+ul li:hover > ul,
+ul li:focus-within > ul,
+ul li ul:hover{
+  opacity: 1;
+  background-color: #FFD723;
+  border: 2px solid #53575B;
+  display: flex;
+  flex-direction: column;
+  visibility: visible;
+  padding-left: 0;
+}
+
+----
 h1 {
   color: #FB7959;
   text-shadow: 2px 2px #53575B;
@@ -83,7 +116,11 @@ form {
 }
 
 .vertical-form input {
-  margin-top: 10px;
+  margin-top: 20px;
+}
+
+.vertical-form select {
+  margin-top: 20px;
 }
 
 .split-row {
@@ -136,7 +173,7 @@ input:focus {
 }
 
 .sidebar {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center ;
   height: 100%;
