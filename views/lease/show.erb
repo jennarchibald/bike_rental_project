@@ -74,7 +74,7 @@
         <form action="/leases/<%=@lease.id%>/edit" method="get">
           <input type="submit" name="edit-lease" value="Edit Lease Details">
         </form></td>
-        <td><form action="/leased-items" method="get">
+        <td><form action="/leased-items/<%= @lease.id%>" method="get">
           <input type="hidden" name="lease_id" value="<%= @lease.id %>">
           <input type="submit" name="add-item" value="Add or Remove Items">
         </form></td>

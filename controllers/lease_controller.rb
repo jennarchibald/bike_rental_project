@@ -35,13 +35,12 @@ post '/leases' do
   @lease = Lease.new(params)
   @lease.save()
   @items = StockItem.available_items()
-  erb(:'leased_items/new')
+  redirect "/leased-items/#{@lease.id}"
 end
 
 
-
 post '/leases/:id' do
-  lease = Lease.new(params)
-  lease.calculate_total_cost()
-  redirect '/leases'
+  @lease = Lease.new(params)
+  @lease.calculate_total_cost()
+  redirect "/leased-items/#{@lease.id}"
 end

@@ -33,13 +33,13 @@ end
 post '/item-types' do
   item = ItemType.new(params)
   item.save()
-  redirect '/item-types'
+  redirect "/item-types/#{item.id}"
 end
 
 post '/item-types/:id' do
-  type = ItemType.new(params)
-  type.update()
-  redirect '/item-types'
+  @type = ItemType.new(params)
+  @type.update()
+  redirect "/item-types/#{@type.id}"
 end
 
 post '/item-types/:id/delete' do

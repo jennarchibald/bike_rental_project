@@ -34,14 +34,14 @@ end
 post '/customers' do
   new_customer = Customer.new(params)
   new_customer.save()
-  redirect '/customers'
+  redirect "/customers/#{new_customer.id}"
 end
 
 
 post '/customers/:id' do
   customer = Customer.new(params)
   customer.update()
-  redirect '/customers'
+  redirect "/customers/#{customer.id}"
 end
 
 post '/customers/:id/delete' do
