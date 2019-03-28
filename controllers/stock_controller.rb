@@ -9,7 +9,7 @@ also_reload('../models/*')
 get '/stock' do
   @stock_items = StockItem.all()
   @stock_items = StockItem.find_by_type(params['type']) if params['type'] && params['type'] != 'all'
-  @stock_items = [StockItem.find_by_id(params['id'])] if params['id']
+  @stock_items = [StockItem.find_by_id(params['id'])] if params['id'] && params['id'] != ""
   @item_types = ItemType.all()
   erb(:"stock/index")
 end

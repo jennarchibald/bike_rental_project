@@ -125,6 +125,12 @@ input::placeholder {
   font-size: 0.6em;
 }
 
+input:focus {
+  color: #53575B;
+  background-color: #F0F2F2;
+  outline-color: white;
+}
+
 .overdue {
   background-color: salmon;
 }

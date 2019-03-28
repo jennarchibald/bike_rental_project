@@ -14,7 +14,6 @@ end
 get '/leases/new' do
   @customers = Customer.all()
   @customer_id = params['customer_id'].to_i
-  p params
   @stock_items = StockItem.available_items()
   erb(:'lease/new')
 end

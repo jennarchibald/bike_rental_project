@@ -25,7 +25,9 @@ post '/leased-items/:lease_id' do
   if params['stock_id'] != ""
     item = StockItem.find_by_id(params['stock_id'])
     params['stock_item_id'] = params['stock_id']
-    leaseditem = LeasedItem.new(params) if item.available
+    if item
+      leaseditem = LeasedItem.new(params) if item.available
+    end
   end
 
   leaseditem.save() if leaseditem
