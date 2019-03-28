@@ -23,3 +23,7 @@ It is built using PostgreSQL, ruby, and sinatra.
 - Improved customer search function
 
 - Improved CSS styling and layout
+
+[Version 1.2](https://github.com/jennarchibald/bike_rental_project/tree/73605e32febed5641631d7f4de4d8a691cd86ba6)
+
+- Improved CSS Layout
