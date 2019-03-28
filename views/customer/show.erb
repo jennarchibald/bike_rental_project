@@ -24,6 +24,12 @@
       <input type="submit" name="delete-buttom" value="Delete This Customer">
     </form></td>
   </tr>
+  <tr>
+    <td colspan="2"><form action="/leases/new" method="get">
+      <input type="hidden" name="customer_id" value="<%= @customer.id %>">
+      <input type="submit" name="create-lease" value="New Lease">
+    </form></td>
+  </tr>
 </table>
 
 <% if @customer.current_leases.length > 0 %>
