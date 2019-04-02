@@ -3,7 +3,7 @@ This project is a system for the manager of a bike rental store, designed to hel
 It is built using PostgreSQL, ruby, and sinatra.
 
 
-[Version 1.0](https://github.com/jennarchibald/bike_rental_project/tree/67867fd0ae6a306d1a6af637e1c3da2b8c8a8868)
+[Version 0.1.0](https://github.com/jennarchibald/bike_rental_project/tree/67867fd0ae6a306d1a6af637e1c3da2b8c8a8868)
 
 -Allows for creation, editing and deletion of customers and stock items.
 
@@ -16,7 +16,7 @@ It is built using PostgreSQL, ruby, and sinatra.
 -Allows for filtering of leases by status (active, returned and overdue).
 
 
-[Version 1.1](https://github.com/jennarchibald/bike_rental_project/tree/7b18faecbe20df1d0cd30340811a1024b94c3bb3)
+[Version 1.1.0](https://github.com/jennarchibald/bike_rental_project/tree/7b18faecbe20df1d0cd30340811a1024b94c3bb3)
 
 - Allows for multiple items to be added to each lease.
 
@@ -24,6 +24,6 @@ It is built using PostgreSQL, ruby, and sinatra.
 
 - Improved CSS styling and layout
 
-[Version 1.2](https://github.com/jennarchibald/bike_rental_project/tree/73605e32febed5641631d7f4de4d8a691cd86ba6)
+[Version 1.1.1](https://github.com/jennarchibald/bike_rental_project/tree/73605e32febed5641631d7f4de4d8a691cd86ba6)
 
 - Improved CSS Layout
