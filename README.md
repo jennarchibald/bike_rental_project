@@ -13,6 +13,8 @@ Building this app was my first 'real' coding project and I learned a lot along t
 If I was to attempt this project again, I think I would try to consider the UX of the site a little more, especially when adding new functionalities and trying to find a logical place to place them within the site's navigation. 
 Overall, I'm proud of what I was able to accomplish so soon into the course, particularly the search bar in the customers view, which I feel really added to the usability of the app and was a really fun challenge to figure out.
 
+![The Customers Index](readme_images/customers.png)
+
 
 [Version 0.1.0](https://github.com/jennarchibald/bike_rental_project/tree/67867fd0ae6a306d1a6af637e1c3da2b8c8a8868)
 
