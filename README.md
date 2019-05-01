@@ -2,6 +2,10 @@ This project is a system for the manager of a bike rental store, designed to hel
 
 It is built using PostgreSQL, ruby, and sinatra.
 
+The completed App can be viewed at https://bikerentalproject.herokuapp.com/
+
+This app was built as my solo week 4 ruby project for CodeClan's professional software development course. 
+
 
 [Version 0.1.0](https://github.com/jennarchibald/bike_rental_project/tree/67867fd0ae6a306d1a6af637e1c3da2b8c8a8868)
 
